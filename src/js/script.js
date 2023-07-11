@@ -52,7 +52,58 @@ const select = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
 
+
+  class Product {
+    constructor(id, data) {
+      const thisProduct = this;
+
+      thisProduct.id = id;
+      thisProduct.data = data;
+
+      thisProduct.renderInMenu();
+
+      console.log('New product: ', thisProduct);
+    }
+
+    /*
+     * Generate HTML basedon template,
+     * Create element using utils.createElementfromHTML,
+     * Find menu container,
+     * Add element to menu.
+     **/
+    renderInMenu() {
+      const thisProduct = this;
+
+      const generatedHTML = templates.menuProduct(thisProduct.data);
+      //console.log(generatedHTML);
+
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+
+      const menuContainer = document.querySelector(select.containerOf.menu);
+
+      menuContainer.appendChild(thisProduct.element);
+    }
+  }
+
+
   const app = {
+    initMenu: function() {
+      //const testProduct = new Product;
+      //console.log('Test product: ', testProduct);
+      const thisApp = this;
+      console.log('ThisApp.Data: ', thisApp.data);
+
+      for (let productData in thisApp.data.products) {
+        new Product (productData, thisApp.data.products[productData]);
+      }
+    },
+
+    initData: function() {
+      const thisApp = this;
+      thisApp.data = dataSource;
+      console.log('ThisApp.Data: ', thisApp.data);
+    },
+
     init: function(){
       const thisApp = this;
       console.log('*** App starting ***');
@@ -60,6 +111,9 @@ const select = {
       console.log('classNames:', classNames);
       console.log('settings:', settings);
       console.log('templates:', templates);
+
+      thisApp.initData();
+      thisApp.initMenu();
     },
   };
 

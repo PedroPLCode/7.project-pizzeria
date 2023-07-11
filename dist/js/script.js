@@ -61,9 +61,9 @@ const select = {
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
-
-      console.log('New product: ', thisProduct);
+      thisProduct.initAccordion();
     }
+
 
     /*
      * Generate HTML basedon template,
@@ -75,7 +75,6 @@ const select = {
       const thisProduct = this;
 
       const generatedHTML = templates.menuProduct(thisProduct.data);
-      //console.log(generatedHTML);
 
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
 
@@ -83,15 +82,41 @@ const select = {
 
       menuContainer.appendChild(thisProduct.element);
     }
+
+
+    /*
+     * Find the clickable trigger,
+     * Start addEvenrListener,
+     * Prevent default action,
+     * Find active product,
+     * if there is active product and this is not thisProduct.element,
+     * toggle active class on thisProduct.element.
+     **/
+    initAccordion() {
+      const thisProduct = this;
+
+      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+
+      clickableTrigger.addEventListener('click', function (event) {
+        event.preventDefault();
+        console.log('klik');
+
+        const activeProduct = document.querySelector(select.all.menuProductsActive);
+
+        if (activeProduct && activeProduct != thisProduct.element) {
+          activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
+        }
+
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
+
+      });
+    }
   }
 
 
   const app = {
     initMenu: function() {
-      //const testProduct = new Product;
-      //console.log('Test product: ', testProduct);
       const thisApp = this;
-      console.log('ThisApp.Data: ', thisApp.data);
 
       for (let productData in thisApp.data.products) {
         new Product (productData, thisApp.data.products[productData]);
@@ -101,7 +126,6 @@ const select = {
     initData: function() {
       const thisApp = this;
       thisApp.data = dataSource;
-      console.log('ThisApp.Data: ', thisApp.data);
     },
 
     init: function(){

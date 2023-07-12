@@ -97,6 +97,7 @@ const select = {
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
 
@@ -158,25 +159,32 @@ const select = {
       console.log('processOrder');
       
       const formData = utils.serializeFormToObject(thisProduct.form);
-      //console.log('formData', formData);
       
       let price = thisProduct.data.price;
       
       for(let paramId in thisProduct.data.params) {
         const param = thisProduct.data.params[paramId];
-        //console.log(paramId, param);
       
         for(let optionId in param.options) {
           const option = param.options[optionId];
-          //console.log(optionId, option);
 
-          if (formData[paramId] && formData[paramId].includes(optionId) && (!option.default)) {
-            //console.log('zawiera', optionId);
-            //console.log('nie domyślna, dodaje', option.price);
-            price += option.price;
-          } else if (formData[paramId] && !formData[paramId].includes(optionId) && (option.default)) {
-            //console.log('domyślna, odejmuje', option.price);
-            price -= option.price;
+          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+
+          if (optionSelected) {
+            if (!option.default) {
+              price += option.price;
+            }
+            if (optionImage) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            }
+          } else {
+            if (option.default) {
+              price -= option.price;
+            }
+            if (optionImage) {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
           }
         }
       }

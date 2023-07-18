@@ -64,16 +64,11 @@ const select = {
       thisProduct.getElements();
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder();
     }
 
 
-    /*
-     * Generate HTML basedon template,
-     * Create element using utils.createElementfromHTML,
-     * Find menu container,
-     * Add element to menu.
-     **/
     renderInMenu() {
       const thisProduct = this;
 
@@ -86,9 +81,7 @@ const select = {
       menuContainer.appendChild(thisProduct.element);
     }
 
-    /*
-     * Get elements..
-     **/
+
     getElements(){
       const thisProduct = this;
     
@@ -98,17 +91,10 @@ const select = {
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     }
 
 
-    /*
-     * Find the clickable trigger,
-     * Start addEvenrListener,
-     * Prevent default action,
-     * Find active product,
-     * if there is active product and this is not thisProduct.element,
-     * toggle active class on thisProduct.element.
-     **/
     initAccordion() {
       const thisProduct = this;
 
@@ -126,12 +112,8 @@ const select = {
     }
 
 
-    /*
-     * initInputForm..
-     **/
     initOrderForm() {
       const thisProduct = this;
-      console.log('initOrderForm');
 
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
@@ -151,12 +133,20 @@ const select = {
     }
 
 
-    /*
-     * processOrder..
-     **/
+    initAmountWidget() {
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new amountWidget(thisProduct.amountWidgetElem);
+
+      thisProduct.amountWidgetElem.addEventListener('updated', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+    }
+
+
     processOrder() {
       const thisProduct = this;
-      console.log('processOrder');
       
       const formData = utils.serializeFormToObject(thisProduct.form);
       
@@ -189,7 +179,76 @@ const select = {
         }
       }
 
+      price *= thisProduct.amountWidget.value;
+
       thisProduct.priceElem.innerHTML = price;
+    }
+  }
+
+
+  class amountWidget {
+    constructor (element) {
+      const thisWidget = this;
+
+      thisWidget.getElements(element);
+      thisWidget.initActions();
+      thisWidget.setValue(settings.amountWidget.defaultValue);
+    }
+
+
+    getElements(element){
+      const thisWidget = this;
+    
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+
+
+    initActions() {
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function(){
+        thisWidget.setValue(thisWidget.input.value);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function(value) {
+        value.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function(value) {
+        value.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
+    }
+
+
+    announce() {
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
+    }
+
+
+    setValue(value) {
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+      const valueIsCorrect = thisWidget.value !== newValue && 
+                             !isNaN(newValue) && 
+                             newValue >= settings.amountWidget.defaultMin && 
+                             newValue <= settings.amountWidget.defaultMax;
+
+      if (valueIsCorrect) {
+        thisWidget.value = newValue;
+        thisWidget.announce();
+      }
+
+      thisWidget.input.value = thisWidget.value;
     }
   }
 
@@ -210,11 +269,6 @@ const select = {
 
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
 
       thisApp.initData();
       thisApp.initMenu();

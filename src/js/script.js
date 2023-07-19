@@ -308,7 +308,6 @@
       thisWidget.dom.linkIncrease.addEventListener('click', function(value) {
         value.preventDefault();
         thisWidget.setValue(thisWidget.value + 1);
-        console.log(thisWidget.products);
       });
     }
 

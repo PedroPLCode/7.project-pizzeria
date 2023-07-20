@@ -161,7 +161,6 @@
         event.preventDefault();
         thisProduct.processOrder();
         thisProduct.addToCart();
-        //thisProduct.prepareCartProductParams();
       });
     }
 
@@ -399,7 +398,6 @@
       cartContainer.appendChild(generatedDOM);
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-      //console.log(thisCart.products);
 
       thisCart.update();
     }
@@ -419,11 +417,6 @@
       if (thisCart.products) {
         thisCart.totalPrice = subtotalPrice + deliveryFee;
       }
-
-      console.log(totalNumber);
-      console.log(subtotalPrice);
-      console.log(thisCart.totalPrice);
-      console.log(thisCart.products);
 
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.totalNumber.innerHTML = totalNumber;
@@ -477,6 +470,9 @@
 
         const amount = thisCartProduct.amountWidget.value;
         const price = thisCartProduct.priceSingle;
+
+        thisCartProduct.amount = amount;
+        thisCartProduct.price = amount * price;
 
         thisCartProduct.dom.price.innerHTML = price * amount;
       });

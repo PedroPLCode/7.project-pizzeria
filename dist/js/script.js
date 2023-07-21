@@ -431,7 +431,6 @@
       thisCart.dom.form.addEventListener('submit', function(event) {
         event.preventDefault();
         thisCart.sentOrder();
-        thisCart.resetToDefault();
       });
     }
 
@@ -519,13 +518,27 @@
         body: JSON.stringify(payload),
       };
       
-      fetch(url, options)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(parsedResponse) {
-          console.log('parsed response - sentOrder', parsedResponse);
-        });
+
+      if (payload.address) {
+        if (payload.phone) {
+          if (payload.products.length != 0) {
+            fetch(url, options)
+            .then(function(response) {
+              return response.json();
+            })
+            .then(function(parsedResponse) {
+              console.log('parsed response - sentOrder', parsedResponse);
+            });
+            thisCart.resetToDefault();
+          } else {
+            alert('Cart looks empty. Please put some products.');
+          }
+        } else {
+          alert('Phone field empty. Please provide correct phone number.');
+        }
+      } else {
+        alert('Address field empty. Please enter correct address.');
+      }
     }
 
 

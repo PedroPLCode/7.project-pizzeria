@@ -518,26 +518,36 @@
         body: JSON.stringify(payload),
       };
       
+      if (thisCart.validate(payload)) {
+        fetch(url, options)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(parsedResponse) {
+          console.log('parsed response - sentOrder', parsedResponse);
+        });
+        thisCart.resetToDefault();
+      } 
+     } 
+  
+
+    validate(payload) {
+      const thisCart = this;
 
       if (payload.address) {
-        if (payload.phone) {
+        if (payload.phone.length == 9) {
           if (payload.products.length != 0) {
-            fetch(url, options)
-            .then(function(response) {
-              return response.json();
-            })
-            .then(function(parsedResponse) {
-              console.log('parsed response - sentOrder', parsedResponse);
-            });
-            thisCart.resetToDefault();
+            return true;
           } else {
             alert('Cart looks empty. Please put some products.');
           }
         } else {
-          alert('Phone field empty. Please provide correct phone number.');
+          thisCart.dom.phone.classList.add('error');
+          alert('Phone field error. Please provide correct phone number - 9 digits.');
         }
       } else {
-        alert('Address field empty. Please enter correct address.');
+        thisCart.dom.address.classList.add('error');
+        alert('Address field empty. Please provide correct address.');
       }
     }
 

@@ -431,6 +431,7 @@
       thisCart.dom.form.addEventListener('submit', function(event) {
         event.preventDefault();
         thisCart.sentOrder();
+        thisCart.resetToDefault();
       });
     }
 
@@ -526,6 +527,19 @@
           console.log('parsed response - sentOrder', parsedResponse);
         });
     }
+
+
+    resetToDefault() {
+      const thisCart = this;
+
+      for (let singleProduct of thisCart.products) {
+        singleProduct.dom.wrapper.remove(); //czysci wizualnie koszyk
+      }
+
+      thisCart.products = []; //czysci tablicę zamówionych produktów
+
+      thisCart.update();
+    } 
   }
 
 

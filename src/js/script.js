@@ -432,6 +432,18 @@
         event.preventDefault();
         thisCart.sentOrder();
       });
+
+      thisCart.dom.address.addEventListener('change', function() {
+        if (thisCart.validate(thisCart.products)) {
+          thisCart.dom.address.classList.remove('error');
+        }
+      });
+
+      thisCart.dom.phone.addEventListener('change', function() {
+        if (thisCart.validate(thisCart.products)) {
+          thisCart.dom.phone.classList.remove('error');
+        }
+      });
     }
 
 
@@ -494,7 +506,7 @@
 
       const url = settings.db.url + '/' + settings.db.orders;
 
-      const payload = {
+      thisCart.payload = {
         address: thisCart.dom.address.value,
         phone: thisCart.dom.phone.value,
         totalPrice: thisCart.totalPrice,
@@ -505,20 +517,20 @@
       };
 
       for(let prod of thisCart.products) {
-        payload.products.push(prod.getData());
+        thisCart.payload.products.push(prod.getData());
       }
 
-      console.log('ready - sentOrder', payload);
+      console.log('ready - sentOrder', thisCart.payload);
 
       const options = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(thisCart.payload),
       };
       
-      if (thisCart.validate(payload)) {
+      if (thisCart.validate(thisCart.payload)) {
         fetch(url, options)
         .then(function(response) {
           return response.json();
@@ -534,20 +546,22 @@
     validate(payload) {
       const thisCart = this;
 
-      if (payload.address) {
+      if (payload.products.length != 0) {
         if (payload.phone.length == 9) {
-          if (payload.products.length != 0) {
+          thisCart.dom.phone.classList.remove('error');
+          if (payload.address.length >= 6) {
+            thisCart.dom.address.classList.remove('error');
             return true;
           } else {
-            alert('Cart looks empty. Please put some products.');
+            thisCart.dom.address.classList.add('error');
+            alert('Address too short. Please provide correct address - at least 6 characters');
           }
         } else {
           thisCart.dom.phone.classList.add('error');
           alert('Phone field error. Please provide correct phone number - 9 digits.');
         }
       } else {
-        thisCart.dom.address.classList.add('error');
-        alert('Address field empty. Please provide correct address.');
+        alert('Cart looks empty. Please put some products.');
       }
     }
 

@@ -204,27 +204,59 @@
   ],
   "orders": [
     {
-      "address": "jkikhv 6",
+      "address": "asdsad2 2",
       "phone": "123123123",
-      "totalPrice": 38,
-      "subtotalPrice": 18,
-      "totalNumber": 2,
+      "totalPrice": 97,
+      "subtotalPrice": 77,
+      "totalNumber": 5,
       "deliveryFee": 20,
       "products": [
         {
           "id": "cake",
-          "amount": 2,
-          "price": 18,
+          "amount": 3,
+          "price": 27,
           "priceSingle": 9,
           "name": "Zio Stefano's Doughnut",
           "params": {}
+        },
+        {
+          "id": "pizza",
+          "amount": 2,
+          "price": 50,
+          "priceSingle": 25,
+          "name": "Nonna Alba's Pizza",
+          "params": {
+            "sauce": {
+              "label": "Sauce",
+              "options": {
+                "cream": "Sour cream"
+              }
+            },
+            "toppings": {
+              "label": "Toppings",
+              "options": {
+                "olives": "Olives",
+                "redPeppers": "Red peppers",
+                "greenPeppers": "Green peppers",
+                "mushrooms": "Mushrooms",
+                "basil": "Fresh basil",
+                "salami": "Salami"
+              }
+            },
+            "crust": {
+              "label": "pizza crust",
+              "options": {
+                "standard": "standard"
+              }
+            }
+          }
         }
       ],
       "id": 1
     },
     {
-      "address": "poiksdsd",
-      "phone": "123123123",
+      "address": "asawewqe",
+      "phone": "111222333",
       "totalPrice": 29,
       "subtotalPrice": 9,
       "totalNumber": 1,
@@ -242,17 +274,17 @@
       "id": 2
     },
     {
-      "address": "sadsedfr",
-      "phone": "123456654",
-      "totalPrice": 47,
-      "subtotalPrice": 27,
-      "totalNumber": 3,
+      "address": "sadsadsad",
+      "phone": "123123123",
+      "totalPrice": 29,
+      "subtotalPrice": 9,
+      "totalNumber": 1,
       "deliveryFee": 20,
       "products": [
         {
           "id": "cake",
-          "amount": 3,
-          "price": 27,
+          "amount": 1,
+          "price": 9,
           "priceSingle": 9,
           "name": "Zio Stefano's Doughnut",
           "params": {}
@@ -261,8 +293,27 @@
       "id": 3
     },
     {
-      "address": "wqdasada",
-      "phone": "123123122",
+      "address": "dsfdsfdsfds",
+      "phone": "123123123",
+      "totalPrice": 29,
+      "subtotalPrice": 9,
+      "totalNumber": 1,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "id": "cake",
+          "amount": 1,
+          "price": 9,
+          "priceSingle": 9,
+          "name": "Zio Stefano's Doughnut",
+          "params": {}
+        }
+      ],
+      "id": 4
+    },
+    {
+      "address": "qweqwed3 ",
+      "phone": "123123123",
       "totalPrice": 38,
       "subtotalPrice": 18,
       "totalNumber": 2,
@@ -277,45 +328,7 @@
           "params": {}
         }
       ],
-      "id": 4
-    },
-    {
-      "address": "wqdasada",
-      "phone": "123123122",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        }
-      ],
       "id": 5
-    },
-    {
-      "address": "sad 324 s",
-      "phone": "123123122",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        }
-      ],
-      "id": 6
     }
   ]
 }

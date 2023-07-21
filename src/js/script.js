@@ -59,6 +59,7 @@
     },
     cart: {
       wrapperActive: 'active',
+      wrapperError: 'error',
     },
   };
   
@@ -434,14 +435,18 @@
       });
 
       thisCart.dom.address.addEventListener('change', function() {
-        if (thisCart.validate(thisCart.products)) {
-          thisCart.dom.address.classList.remove('error');
+        thisCart.dom.address.classList.add(classNames.cart.wrapperError);
+        if (thisCart.dom.address.value.length >= 6) {
+          thisCart.dom.address.classList.remove(classNames.cart.wrapperError);
         }
       });
 
       thisCart.dom.phone.addEventListener('change', function() {
-        if (thisCart.validate(thisCart.products)) {
-          thisCart.dom.phone.classList.remove('error');
+        console.log(thisCart.dom.phone.value.length)
+
+        thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
+        if (thisCart.dom.phone.value.length == 9) {
+          thisCart.dom.phone.classList.remove(classNames.cart.wrapperError);
         }
       });
     }
@@ -548,16 +553,16 @@
 
       if (payload.products.length != 0) {
         if (payload.phone.length == 9) {
-          thisCart.dom.phone.classList.remove('error');
+          thisCart.dom.phone.classList.remove(classNames.cart.wrapperError);
           if (payload.address.length >= 6) {
-            thisCart.dom.address.classList.remove('error');
+            thisCart.dom.address.classList.remove(classNames.cart.wrapperError);
             return true;
           } else {
-            thisCart.dom.address.classList.add('error');
+            thisCart.dom.address.classList.add(classNames.cart.wrapperError);
             alert('Address too short. Please provide correct address - at least 6 characters');
           }
         } else {
-          thisCart.dom.phone.classList.add('error');
+          thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
           alert('Phone field error. Please provide correct phone number - 9 digits.');
         }
       } else {

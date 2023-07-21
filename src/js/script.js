@@ -166,6 +166,7 @@
         event.preventDefault();
         thisProduct.processOrder();
         thisProduct.addToCart();
+        thisProduct.resetToDefault();
       });
     }
 
@@ -220,6 +221,37 @@
 
       price *= thisProduct.amountWidget.value;
       thisProduct.dom.priceElem.innerHTML = price;
+    }
+
+
+    resetToDefault() {
+      const thisProduct = this;
+      
+      thisProduct.dom.form.reset();
+
+      thisProduct.amountWidget.setValue(settings.amountWidget.defaultValue); 
+      
+      for(let paramId in thisProduct.data.params) {
+        const param = thisProduct.data.params[paramId];
+      
+        for(let optionId in param.options) {
+          const option = param.options[optionId];
+
+          const optionImage = thisProduct.dom.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+
+          if (option.default) {
+            if (optionImage) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            }
+          } else {
+            if (optionImage) {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
+          }
+        } 
+      }
+
+      thisProduct.dom.priceElem.innerHTML = thisProduct.data.price;
     }
 
 

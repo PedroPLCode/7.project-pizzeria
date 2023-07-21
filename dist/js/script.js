@@ -442,7 +442,7 @@
 
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
-      const cartContainer = document.querySelector(select.containerOf.cart);
+      const cartContainer = document.querySelector(select.cart.productList);
       cartContainer.appendChild(generatedDOM);
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));

@@ -43,6 +43,7 @@
       formSubmit: '.cart__order [type="submit"]',
       phone: '[name="phone"]',
       address: '[name="address"]',
+      message: '.cart__message',
     },
     cartProduct: {
       amountWidget: '.widget-amount',
@@ -488,6 +489,7 @@
       }
     }
 
+
     remove(productToRemove) {
       const thisCart = this;
 
@@ -498,6 +500,7 @@
 
       thisCart.update();
     }
+
 
     sentOrder() {
       const thisCart = this;
@@ -548,11 +551,12 @@
     printMessage(msg) {
       let div = document.createElement('div');
       div.innerHTML = msg;
-      document.querySelector('.cart__message').appendChild(div);
+      document.querySelector(select.cart.message).appendChild(div);
     }
     
+
     clearMessages() {
-      document.querySelector('.cart__message').innerHTML = '';
+      document.querySelector(select.cart.message).innerHTML = '';
     } 
   
 
@@ -610,6 +614,7 @@
       thisCartProduct.initActions();
     }
 
+    
     getElements(element) {
       const thisCartProduct = this;
 

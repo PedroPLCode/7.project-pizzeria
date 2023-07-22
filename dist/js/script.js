@@ -143,8 +143,6 @@
         }
 
         thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-
-        app.cart.clearMessages();
       });
     }
 
@@ -432,15 +430,23 @@
 
       thisCart.dom.address.addEventListener('change', function() {
         thisCart.dom.address.classList.add(classNames.cart.wrapperError);
+        thisCart.clearMessages();
+        thisCart.printMessage('Please provide correct address.');
+        thisCart.printMessage('At least 6 characters.');
         if (thisCart.dom.address.value.length >= 6) {
           thisCart.dom.address.classList.remove(classNames.cart.wrapperError);
+          thisCart.clearMessages();
         }
       });
 
       thisCart.dom.phone.addEventListener('change', function() {
         thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
+        thisCart.clearMessages();
+        thisCart.printMessage('Please provide correct number.');
+        thisCart.printMessage('9 digits.');
         if (thisCart.dom.phone.value.length == 9) {
           thisCart.dom.phone.classList.remove(classNames.cart.wrapperError);
+          thisCart.clearMessages();
         }
       });
     }
@@ -457,6 +463,8 @@
       cartContainer.appendChild(generatedDOM);
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+
+      thisCart.clearMessages();
 
       thisCart.update();
     }
@@ -541,8 +549,10 @@
 
         const activeProduct = document.querySelector(select.all.menuProductsActive);
         activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
-
-        thisCart.printMessage('ORDER SENT.');
+        
+        thisCart.clearMessages();
+        thisCart.printMessage('ORDER CONFIRMATION.');
+        thisCart.printMessage('Order sent successfully.');
         thisCart.printMessage('Please wait for delivery.');
       } 
      } 
@@ -562,23 +572,35 @@
 
     validate(payload) {
       const thisCart = this;
+      thisCart.clearMessages();
 
       if (payload.products.length != 0) {
+        thisCart.clearMessages();
         if (payload.phone.length == 9) {
           thisCart.dom.phone.classList.remove(classNames.cart.wrapperError);
+          thisCart.clearMessages();
           if (payload.address.length >= 6) {
             thisCart.dom.address.classList.remove(classNames.cart.wrapperError);
+            thisCart.clearMessages();
             return true;
           } else {
             thisCart.dom.address.classList.add(classNames.cart.wrapperError);
-            alert('Address too short. Please provide correct address - at least 6 characters');
+            thisCart.clearMessages();
+            thisCart.printMessage('WRONG ADDRES');
+            thisCart.printMessage('Please provide correct address.');
+            thisCart.printMessage('At least 6 characters.');
           }
         } else {
+          thisCart.clearMessages();
+          thisCart.printMessage('WRONG PHONE NUMBER');
+          thisCart.printMessage('Please provide correct number.');
+          thisCart.printMessage('9 digits.');
           thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
-          alert('Phone field error. Please provide correct phone number - 9 digits.');
         }
       } else {
-        alert('Cart looks empty. Please put some products.');
+        thisCart.clearMessages();
+        thisCart.printMessage('CARD IS EMPTY.');
+        thisCart.printMessage('Put some products.');
       }
     }
 

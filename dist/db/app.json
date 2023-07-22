@@ -204,32 +204,24 @@
   ],
   "orders": [
     {
-      "address": "asdsad2 2",
-      "phone": "123123123",
-      "totalPrice": 97,
-      "subtotalPrice": 77,
-      "totalNumber": 5,
+      "address": "dfsf 1",
+      "phone": "111111111",
+      "totalPrice": 43,
+      "subtotalPrice": 23,
+      "totalNumber": 1,
       "deliveryFee": 20,
       "products": [
         {
-          "id": "cake",
-          "amount": 3,
-          "price": 27,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        },
-        {
           "id": "pizza",
-          "amount": 2,
-          "price": 50,
-          "priceSingle": 25,
+          "amount": 1,
+          "price": 23,
+          "priceSingle": 23,
           "name": "Nonna Alba's Pizza",
           "params": {
             "sauce": {
               "label": "Sauce",
               "options": {
-                "cream": "Sour cream"
+                "tomato": "Tomato"
               }
             },
             "toppings": {
@@ -253,82 +245,6 @@
         }
       ],
       "id": 1
-    },
-    {
-      "address": "asawewqe",
-      "phone": "111222333",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        }
-      ],
-      "id": 2
-    },
-    {
-      "address": "sadsadsad",
-      "phone": "123123123",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        }
-      ],
-      "id": 3
-    },
-    {
-      "address": "dsfdsfdsfds",
-      "phone": "123123123",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        }
-      ],
-      "id": 4
-    },
-    {
-      "address": "qweqwed3 ",
-      "phone": "123123123",
-      "totalPrice": 38,
-      "subtotalPrice": 18,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "amount": 2,
-          "price": 18,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        }
-      ],
-      "id": 5
     }
   ]
 }

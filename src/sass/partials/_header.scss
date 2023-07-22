@@ -1,5 +1,5 @@
 .header {
-  padding: ($base-size * 5) 0;
+  padding: ($base-size) 0;
   background: $color-dark;
   color: $color-light;
 
@@ -7,6 +7,12 @@
     position: relative;
   }
 
+}
+
+.sticky {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 
 .logo {

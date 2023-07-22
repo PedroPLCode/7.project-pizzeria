@@ -143,8 +143,7 @@
 
         thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
 
-        //Zwijanie koszyka gru klikniemy w produkt
-        //app.cart.dom.wrapper.classList.remove(classNames.cart.wrapperActive);
+        app.cart.clearMessages();
       });
     }
 
@@ -415,10 +414,6 @@
         event.preventDefault();
         
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
-        
-        //Zwijanie produktów gdy klikniemy w koszyk
-        //const activeProduct = document.querySelector(select.all.menuProductsActive);
-        //activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
       });
 
       thisCart.dom.productList.addEventListener('updated', function() {
@@ -442,8 +437,6 @@
       });
 
       thisCart.dom.phone.addEventListener('change', function() {
-        console.log(thisCart.dom.phone.value.length)
-
         thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
         if (thisCart.dom.phone.value.length == 9) {
           thisCart.dom.phone.classList.remove(classNames.cart.wrapperError);
@@ -525,8 +518,6 @@
         thisCart.payload.products.push(prod.getData());
       }
 
-      console.log('ready - sentOrder', thisCart.payload);
-
       const options = {
         method: 'POST',
         headers: {
@@ -544,8 +535,25 @@
           console.log('parsed response - sentOrder', parsedResponse);
         });
         thisCart.resetToDefault();
+
+        const activeProduct = document.querySelector(select.all.menuProductsActive);
+        activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
+
+        thisCart.printMessage('ORDER SENT.');
+        thisCart.printMessage('Please wait for delivery.');
       } 
      } 
+
+
+    printMessage(msg) {
+      let div = document.createElement('div');
+      div.innerHTML = msg;
+      document.querySelector('.cart__message').appendChild(div);
+    }
+    
+    clearMessages() {
+      document.querySelector('.cart__message').innerHTML = '';
+    } 
   
 
     validate(payload) {
@@ -575,10 +583,10 @@
       const thisCart = this;
 
       for (let singleProduct of thisCart.products) {
-        singleProduct.dom.wrapper.remove(); //czysci wizualnie koszyk
+        singleProduct.dom.wrapper.remove();
       }
 
-      thisCart.products = []; //czysci tablicę zamówionych produktów
+      thisCart.products = [];
 
       thisCart.update();
     } 
@@ -700,14 +708,10 @@
         return rawResponse.json();
       })
       .then(function(parsedResponse) {
-        console.log('parsed response - initData', parsedResponse);
-
         thisApp.data.products = parsedResponse;
 
         thisApp.initMenu();
       });
-
-      console.log('json data', JSON.stringify(thisApp.data));
     },
 
     initCart: function() {
@@ -721,7 +725,6 @@
       const thisApp = this;
 
       thisApp.initData();
-      //thisApp.initMenu();
       thisApp.initCart();
     },
   };

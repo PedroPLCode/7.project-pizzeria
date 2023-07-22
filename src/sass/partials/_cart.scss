@@ -50,6 +50,16 @@
     color: $color-dark;
   }
 
+  &__message {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+
+    div:first-of-type {
+      padding-top: 18px;
+    }
+  }
+
   &__order-summary {
     li {
       @include flex(row, center, space-between);

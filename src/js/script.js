@@ -544,18 +544,36 @@
         })
         .then(function(parsedResponse) {
           console.log('parsed response - sentOrder', parsedResponse);
+          thisCart.orderSentOK();
+        })
+        .catch((error) => {
+          thisCart.handleError(error);
         });
-        thisCart.resetToDefault();
-
-        const activeProduct = document.querySelector(select.all.menuProductsActive);
-        activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
-        
-        thisCart.clearMessages();
-        thisCart.printMessage('ORDER CONFIRMATION.');
-        thisCart.printMessage('Order sent successfully.');
-        thisCart.printMessage('Please wait for delivery.');
       } 
-     } 
+    } 
+
+
+    orderSentOK() {
+      const thisCart = this;
+
+      thisCart.resetToDefault();
+
+      const activeProduct = document.querySelector(select.all.menuProductsActive);
+      activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
+        
+      thisCart.clearMessages();
+      thisCart.printMessage('ORDER CONFIRMATION.');
+      thisCart.printMessage('Order sent successfully.');
+      thisCart.printMessage('Please wait for delivery.');
+    }
+
+
+    handleError(errorCode) {
+      const thisCart = this;
+      thisCart.clearMessages();
+      thisCart.printMessage ('ERROR. ORDER NOT SENT')
+      thisCart.printMessage(errorCode);
+    }
 
 
     printMessage(msg) {

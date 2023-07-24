@@ -425,7 +425,7 @@
 
       thisCart.dom.form.addEventListener('submit', function(event) {
         event.preventDefault();
-        app.api.sentOrder();
+        thisCart.sentOrder();
       });
 
       thisCart.dom.address.addEventListener('change', function() {
@@ -510,6 +510,72 @@
     }
 
 
+    sentOrder() {
+      const thisCart = this;
+
+      const url = settings.db.url + '/' + settings.db.orders;
+
+      thisCart.payload = {
+        address: thisCart.dom.address.value,
+        phone: thisCart.dom.phone.value,
+        totalPrice: thisCart.totalPrice,
+        subtotalPrice: thisCart.subtotalPrice,
+        totalNumber: thisCart.totalNumber,
+        deliveryFee: thisCart.deliveryFee,
+        products: [],
+      };
+
+      for(let prod of thisCart.products) {
+        thisCart.payload.products.push(prod.getData());
+      }
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(thisCart.payload),
+      };
+      
+      if (thisCart.validate(thisCart.payload)) {
+        fetch(url, options)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(parsedResponse) {
+          console.log('parsed response - sentOrder', parsedResponse);
+          thisCart.orderSentOK();
+        })
+        .catch((error) => {
+          thisCart.handleError(error);
+        });
+      } 
+    } 
+
+
+    orderSentOK() {
+      const thisCart = this;
+
+      thisCart.resetToDefault();
+
+      const activeProduct = document.querySelector(select.all.menuProductsActive);
+      activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
+        
+      thisCart.clearMessages();
+      thisCart.printMessage('ORDER CONFIRMATION.');
+      thisCart.printMessage('Order sent successfully.');
+      thisCart.printMessage('Please wait for delivery.');
+    }
+
+
+    handleError(errorCode) {
+      const thisCart = this;
+      thisCart.clearMessages();
+      thisCart.printMessage ('ERROR. ORDER NOT SENT')
+      thisCart.printMessage(errorCode);
+    }
+
+
     printMessage(msg) {
       let div = document.createElement('div');
       div.innerHTML = msg;
@@ -568,87 +634,6 @@
 
       thisCart.update();
     } 
-  }
-
-
-  class API {
-
-    getData() {
-      const url = settings.db.url + '/' + settings.db.products;
-
-      fetch(url) 
-      .then(function(rawResponse) {
-        return rawResponse.json();
-      })
-      .then(function(parsedResponse) {
-        app.data.products = parsedResponse;
-
-        app.initMenu();
-      });
-    }
-
-
-    sentOrder() {
-      const thisAPI = this;
-
-      const url = settings.db.url + '/' + settings.db.orders;
-
-      thisAPI.payload = {
-        address: app.cart.dom.address.value,
-        phone: app.cart.dom.phone.value,
-        totalPrice: app.cart.totalPrice,
-        subtotalPrice: app.cart.subtotalPrice,
-        totalNumber: app.cart.totalNumber,
-        deliveryFee: app.cart.deliveryFee,
-        products: [],
-      };
-
-      for(let prod of app.cart.products) {
-        thisAPI.payload.products.push(prod.getData());
-      }
-
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(thisAPI.payload),
-      };
-      
-      if (app.cart.validate(thisAPI.payload)) {
-        fetch(url, options)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(parsedResponse) {
-          console.log('parsed response - sentOrder', parsedResponse);
-          thisAPI.orderSentOK();
-        })
-        .catch((error) => {
-          thisAPI.handleError(error);
-        });
-      } 
-    } 
-
-
-    orderSentOK() {
-      app.cart.resetToDefault();
-
-      const activeProduct = document.querySelector(select.all.menuProductsActive);
-      activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
-        
-      app.cart.clearMessages();
-      app.cart.printMessage('ORDER CONFIRMATION.');
-      app.cart.printMessage('Order sent successfully.');
-      app.cart.printMessage('Please wait for delivery.');
-    }
-
-
-    handleError(errorCode) {
-      app.cart.clearMessages();
-      app.cart.printMessage ('ERROR. ORDER NOT SENT')
-      app.cart.printMessage(errorCode);
-    }
   }
 
 
@@ -760,8 +745,18 @@
     initData: function() {
       const thisApp = this;
       thisApp.data = {};
-      thisApp.api = new API();
-      thisApp.api.getData();
+
+      const url = settings.db.url + '/' + settings.db.products;
+
+      fetch(url) 
+      .then(function(rawResponse) {
+        return rawResponse.json();
+      })
+      .then(function(parsedResponse) {
+        thisApp.data.products = parsedResponse;
+
+        thisApp.initMenu();
+      });
     },
 
     initCart: function() {

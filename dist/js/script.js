@@ -35,6 +35,7 @@
     cart: {
       productList: '.cart__order-summary',
       toggleTrigger: '.cart__summary',
+      content: '.cart__content',
       totalNumber: `.cart__total-number`,
       totalPrice: '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
       subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
@@ -44,6 +45,7 @@
       phone: '[name="phone"]',
       address: '[name="address"]',
       message: '.cart__message',
+      delayTime: 200,
     },
     cartProduct: {
       amountWidget: '.widget-amount',
@@ -61,6 +63,7 @@
     cart: {
       wrapperActive: 'active',
       wrapperError: 'error',
+      flashWhenUpdated: 'flash',
     },
   };
 
@@ -404,6 +407,7 @@
       thisCart.dom = {
         wrapper: element,
         toggleTrigger: element.querySelector(select.cart.toggleTrigger),
+        content: element.querySelector(select.cart.content),
         productList: document.querySelector(select.containerOf.cart),
         deliveryFee: element.querySelector(select.cart.deliveryFee),
         subtotalPrice: element.querySelector(select.cart.subtotalPrice),
@@ -496,6 +500,8 @@
 
       thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
 
+      thisCart.flash();
+
       thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
@@ -574,6 +580,20 @@
 
       thisCart.update();
     } 
+
+    sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async flash() {
+      const thisCart = this;
+
+      thisCart.dom.toggleTrigger.classList.add(classNames.cart.flashWhenUpdated);
+      thisCart.dom.form.classList.add(classNames.cart.flashWhenUpdated);
+      await thisCart.sleep(select.cart.delayTime);
+      thisCart.dom.toggleTrigger.classList.remove(classNames.cart.flashWhenUpdated);
+      thisCart.dom.form.classList.remove(classNames.cart.flashWhenUpdated);
+    }
   }
 
 

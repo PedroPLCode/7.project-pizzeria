@@ -291,13 +291,39 @@
           }
         }
       }
-
       return params;
+    }
+
+
+    prepareCartProductParamsforSendOrder() {
+      const thisProduct = this;
+
+      const formData = utils.serializeFormToObject(thisProduct.dom.form);
+
+      thisProduct.paramsForSendOrder = {};
+      
+      for(let paramId in thisProduct.data.params) {
+        const param = thisProduct.data.params[paramId];
+
+        thisProduct.paramsForSendOrder[paramId] = {}
+        const listSelected = [];
+      
+        for(let optionId in param.options) {
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+
+          if (optionSelected) {
+            listSelected.push(optionId);
+          }
+        }
+        thisProduct.paramsForSendOrder[paramId] = listSelected;
+      }
     }
 
 
     prepareCartProduct() {
       const thisProduct = this;
+
+      thisProduct.prepareCartProductParamsforSendOrder();
 
       return {
         id: thisProduct.id,
@@ -306,6 +332,7 @@
         priceSingle: thisProduct.priceSingle,
         price: thisProduct.priceSingle * thisProduct.amountWidget.value,
         params: thisProduct.prepareCartProductParams(),
+        paramsForSendOrder: thisProduct.paramsForSendOrder,
       };
     }
 
@@ -688,7 +715,7 @@
       thisCartProduct.amount = menuProduct.amount;
       thisCartProduct.priceSingle = menuProduct.priceSingle;
       thisCartProduct.price = menuProduct.price;
-      thisCartProduct.params = menuProduct.params;
+      thisCartProduct.paramsForSendOrder = menuProduct.paramsForSendOrder;
       thisCartProduct.id = menuProduct.id;
 
       thisCartProduct.getElements(element);
@@ -764,12 +791,11 @@
       const thisCartProduct = this;
 
       return {
-        id: thisCartProduct.id,
+        name: thisCartProduct.id,
         amount: thisCartProduct.amount,
         price: thisCartProduct.price,
         priceSingle: thisCartProduct.priceSingle,
-        name: thisCartProduct.name,
-        params: thisCartProduct.params,
+        params: thisCartProduct.paramsForSendOrder,
       }
     }
   }

@@ -585,7 +585,7 @@
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    async flash() {
+    async flash() {  
       const thisCart = this;
 
       thisCart.dom.toggleTrigger.classList.add(classNames.cart.flashWhenUpdated);
@@ -641,6 +641,8 @@
         body: JSON.stringify(thisAPI.payload),
       };
       
+      app.cart.flash();
+
       if (app.cart.validate(thisAPI.payload)) {
         fetch(url, options)
         .then(function(response) {

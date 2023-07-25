@@ -204,8 +204,27 @@
   ],
   "orders": [
     {
-      "address": "sdfsdf",
-      "phone": "123123122",
+      "address": "121223",
+      "phone": "123123123",
+      "totalPrice": 38,
+      "subtotalPrice": 18,
+      "totalNumber": 2,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "id": "cake",
+          "amount": 2,
+          "price": 18,
+          "priceSingle": 9,
+          "name": "Zio Stefano's Doughnut",
+          "params": {}
+        }
+      ],
+      "id": 1
+    },
+    {
+      "address": "12122i",
+      "phone": "12312312i",
       "totalPrice": 29,
       "subtotalPrice": 9,
       "totalNumber": 1,
@@ -220,99 +239,16 @@
           "params": {}
         }
       ],
-      "id": 1
-    },
-    {
-      "address": "123sdfsf",
-      "phone": "123123122",
-      "totalPrice": 70,
-      "subtotalPrice": 50,
-      "totalNumber": 4,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "amount": 3,
-          "price": 27,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        },
-        {
-          "id": "pizza",
-          "amount": 1,
-          "price": 23,
-          "priceSingle": 23,
-          "name": "Nonna Alba's Pizza",
-          "params": {
-            "sauce": {
-              "label": "Sauce",
-              "options": {
-                "tomato": "Tomato"
-              }
-            },
-            "toppings": {
-              "label": "Toppings",
-              "options": {
-                "olives": "Olives",
-                "redPeppers": "Red peppers",
-                "greenPeppers": "Green peppers",
-                "mushrooms": "Mushrooms",
-                "basil": "Fresh basil",
-                "salami": "Salami"
-              }
-            },
-            "crust": {
-              "label": "pizza crust",
-              "options": {
-                "standard": "standard"
-              }
-            }
-          }
-        }
-      ],
       "id": 2
     },
     {
-      "address": "123sdfsf",
-      "phone": "123123128",
-      "totalPrice": 75,
-      "subtotalPrice": 55,
-      "totalNumber": 3,
+      "address": "12122i",
+      "phone": "12312312i",
+      "totalPrice": 29,
+      "subtotalPrice": 9,
+      "totalNumber": 1,
       "deliveryFee": 20,
       "products": [
-        {
-          "id": "pizza",
-          "amount": 2,
-          "price": 46,
-          "priceSingle": 23,
-          "name": "Nonna Alba's Pizza",
-          "params": {
-            "sauce": {
-              "label": "Sauce",
-              "options": {
-                "tomato": "Tomato"
-              }
-            },
-            "toppings": {
-              "label": "Toppings",
-              "options": {
-                "olives": "Olives",
-                "redPeppers": "Red peppers",
-                "greenPeppers": "Green peppers",
-                "mushrooms": "Mushrooms",
-                "basil": "Fresh basil",
-                "salami": "Salami"
-              }
-            },
-            "crust": {
-              "label": "pizza crust",
-              "options": {
-                "standard": "standard"
-              }
-            }
-          }
-        },
         {
           "id": "cake",
           "amount": 1,
@@ -325,8 +261,8 @@
       "id": 3
     },
     {
-      "address": "123skhg",
-      "phone": "123123128",
+      "address": "12122i",
+      "phone": "1231231ui",
       "totalPrice": 29,
       "subtotalPrice": 9,
       "totalNumber": 1,

@@ -63,6 +63,16 @@
       wrapperError: 'error',
     },
   };
+
+  const messages = {
+    error: {
+      address: ['WARNING.', 'Please provide correct address.', 'At least 6 characters.'],
+      phone: ['WARNING.', 'Please provide correct number.', '9 digits.'],
+      cart: ['WARNING.', 'Cart looks empty.', 'Please put some products.'],
+      notSent: ['ERROR. ORDER NOT SENT.'],
+    },
+    confirmation: ['ORDER CONFIRMATION.', 'Order sent successfully.', 'Please wait for delivery.'], 
+  }
   
   const settings = {
     amountWidget: {
@@ -431,8 +441,7 @@
       thisCart.dom.address.addEventListener('change', function() {
         thisCart.dom.address.classList.add(classNames.cart.wrapperError);
         thisCart.clearMessages();
-        thisCart.printMessage('Please provide correct address.');
-        thisCart.printMessage('At least 6 characters.');
+        thisCart.printMessage(messages.error.address);
         if (thisCart.dom.address.value.length >= 6) {
           thisCart.dom.address.classList.remove(classNames.cart.wrapperError);
           thisCart.clearMessages();
@@ -442,8 +451,7 @@
       thisCart.dom.phone.addEventListener('change', function() {
         thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
         thisCart.clearMessages();
-        thisCart.printMessage('Please provide correct number.');
-        thisCart.printMessage('9 digits.');
+        thisCart.printMessage(messages.error.phone);
         if (thisCart.dom.phone.value.length == 9) {
           thisCart.dom.phone.classList.remove(classNames.cart.wrapperError);
           thisCart.clearMessages();
@@ -510,10 +518,13 @@
     }
 
 
-    printMessage(msg) {
-      let div = document.createElement('div');
-      div.innerHTML = msg;
-      document.querySelector(select.cart.message).appendChild(div);
+    printMessage(msgs) {
+
+      for (let msg of msgs) {
+        let div = document.createElement('div');
+        div.innerHTML = msg;
+        document.querySelector(select.cart.message).appendChild(div);
+      }
     }
     
 
@@ -538,21 +549,16 @@
           } else {
             thisCart.dom.address.classList.add(classNames.cart.wrapperError);
             thisCart.clearMessages();
-            thisCart.printMessage('WRONG ADDRES');
-            thisCart.printMessage('Please provide correct address.');
-            thisCart.printMessage('At least 6 characters.');
+            thisCart.printMessage(messages.error.address);
           }
         } else {
           thisCart.clearMessages();
-          thisCart.printMessage('WRONG PHONE NUMBER');
-          thisCart.printMessage('Please provide correct number.');
-          thisCart.printMessage('9 digits.');
+          thisCart.printMessage(messages.error.phone);
           thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
         }
       } else {
         thisCart.clearMessages();
-        thisCart.printMessage('CARD IS EMPTY.');
-        thisCart.printMessage('Put some products.');
+        thisCart.printMessage(messages.error.cart);
       }
     }
 
@@ -638,16 +644,15 @@
       activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
         
       app.cart.clearMessages();
-      app.cart.printMessage('ORDER CONFIRMATION.');
-      app.cart.printMessage('Order sent successfully.');
-      app.cart.printMessage('Please wait for delivery.');
+      app.cart.printMessage(messages.confirmation);
     }
 
 
     handleError(errorCode) {
       app.cart.clearMessages();
-      app.cart.printMessage ('ERROR. ORDER NOT SENT')
-      app.cart.printMessage(errorCode);
+      messages.error.notSent.push(errorCode);
+      app.cart.printMessage(messages.error.notSent);
+      messages.error.notSent.pop();
     }
   }
 

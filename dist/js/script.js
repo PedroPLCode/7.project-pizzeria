@@ -300,12 +300,12 @@
 
       const formData = utils.serializeFormToObject(thisProduct.dom.form);
 
-      thisProduct.paramsForSendOrder = {};
+      const paramsForSendOrder = {};
       
       for(let paramId in thisProduct.data.params) {
         const param = thisProduct.data.params[paramId];
 
-        thisProduct.paramsForSendOrder[paramId] = {}
+        paramsForSendOrder[paramId] = {}
         const listSelected = [];
       
         for(let optionId in param.options) {
@@ -315,15 +315,14 @@
             listSelected.push(optionId);
           }
         }
-        thisProduct.paramsForSendOrder[paramId] = listSelected;
+        paramsForSendOrder[paramId] = listSelected;
       }
+      return paramsForSendOrder;
     }
 
 
     prepareCartProduct() {
       const thisProduct = this;
-
-      thisProduct.prepareCartProductParamsforSendOrder();
 
       return {
         id: thisProduct.id,
@@ -332,7 +331,7 @@
         priceSingle: thisProduct.priceSingle,
         price: thisProduct.priceSingle * thisProduct.amountWidget.value,
         params: thisProduct.prepareCartProductParams(),
-        paramsForSendOrder: thisProduct.paramsForSendOrder,
+        paramsForSendOrder: thisProduct.prepareCartProductParamsforSendOrder(),
       };
     }
 

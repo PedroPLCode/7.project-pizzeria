@@ -204,87 +204,7 @@
   ],
   "orders": [
     {
-      "address": "213213213",
-      "phone": "111111111",
-      "totalPrice": 47,
-      "subtotalPrice": 27,
-      "totalNumber": 3,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        },
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        },
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        }
-      ],
-      "id": 1
-    },
-    {
-      "address": "213213213",
-      "phone": "111111111",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "breakfast",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zia Giulia's Breakfast",
-          "params": {
-            "coffee": {
-              "label": "Coffee type",
-              "options": {
-                "latte": "Latte"
-              }
-            }
-          }
-        }
-      ],
-      "id": 2
-    },
-    {
-      "address": "121212",
-      "phone": "111111111",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zio Stefano's Doughnut",
-          "params": {}
-        }
-      ],
-      "id": 3
-    },
-    {
-      "address": "sdsdsd",
+      "address": "1212121212",
       "phone": "111111111",
       "totalPrice": 40,
       "subtotalPrice": 20,
@@ -292,345 +212,151 @@
       "deliveryFee": 20,
       "products": [
         {
-          "id": "pizza",
+          "name": "pizza",
           "amount": 1,
           "price": 20,
+          "priceSingle": 20
+        }
+      ],
+      "id": 1
+    },
+    {
+      "address": "1212121212",
+      "phone": "111111111",
+      "totalPrice": 40,
+      "subtotalPrice": 20,
+      "totalNumber": 1,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "name": "pizza",
+          "amount": 1,
+          "price": 20,
+          "priceSingle": 20
+        }
+      ],
+      "id": 2
+    },
+    {
+      "address": "12121212",
+      "phone": "111111111",
+      "totalPrice": 60,
+      "subtotalPrice": 40,
+      "totalNumber": 2,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "name": "pizza",
+          "amount": 2,
+          "price": 40,
           "priceSingle": 20,
-          "name": "Nonna Alba's Pizza",
           "params": {
-            "sauce": {
-              "label": "Sauce",
-              "options": {
-                "tomato": "Tomato"
-              }
-            },
-            "toppings": {
-              "label": "Toppings",
-              "options": {
-                "olives": "Olives",
-                "redPeppers": "Red peppers",
-                "greenPeppers": "Green peppers",
-                "mushrooms": "Mushrooms",
-                "basil": "Fresh basil"
-              }
-            },
-            "crust": {
-              "label": "pizza crust",
-              "options": {
-                "standard": "standard"
-              }
-            }
+            "sauce": [
+              "tomato"
+            ],
+            "toppings": [
+              "olives",
+              "redPeppers",
+              "greenPeppers",
+              "mushrooms",
+              "basil"
+            ],
+            "crust": [
+              "standard"
+            ]
+          }
+        }
+      ],
+      "id": 3
+    },
+    {
+      "address": "12121212",
+      "phone": "111111111",
+      "totalPrice": 60,
+      "subtotalPrice": 40,
+      "totalNumber": 2,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "name": "pizza",
+          "amount": 2,
+          "price": 40,
+          "priceSingle": 20,
+          "params": {
+            "sauce": [
+              "tomato"
+            ],
+            "toppings": [
+              "olives",
+              "redPeppers",
+              "greenPeppers",
+              "mushrooms",
+              "basil"
+            ],
+            "crust": [
+              "standard"
+            ]
           }
         }
       ],
       "id": 4
     },
     {
-      "address": "12121212",
-      "phone": "111111111",
-      "totalPrice": 40,
-      "subtotalPrice": 20,
-      "totalNumber": 1,
+      "address": "asdsadasd",
+      "phone": "121212121",
+      "totalPrice": 123,
+      "subtotalPrice": 103,
+      "totalNumber": 7,
       "deliveryFee": 20,
       "products": [
         {
-          "id": "pizza",
-          "amount": 1,
-          "price": 20,
-          "priceSingle": 20,
-          "name": "Nonna Alba's Pizza",
+          "name": "pizza",
+          "amount": 5,
+          "price": 85,
+          "priceSingle": 17,
           "params": {
-            "sauce": {
-              "label": "Sauce",
-              "options": {
-                "tomato": "Tomato"
-              }
-            },
-            "toppings": {
-              "label": "Toppings",
-              "options": {
-                "olives": "Olives",
-                "redPeppers": "Red peppers",
-                "greenPeppers": "Green peppers",
-                "mushrooms": "Mushrooms",
-                "basil": "Fresh basil"
-              }
-            },
-            "crust": {
-              "label": "pizza crust",
-              "options": {
-                "standard": "standard"
-              }
-            }
+            "sauce": [
+              "tomato"
+            ],
+            "toppings": [
+              "olives",
+              "mushrooms",
+              "salami"
+            ],
+            "crust": [
+              "standard"
+            ]
+          }
+        },
+        {
+          "name": "salad",
+          "amount": 2,
+          "price": 18,
+          "priceSingle": 9,
+          "params": {
+            "ingredients": [
+              "cucumber",
+              "tomatoes",
+              "olives",
+              "herbs"
+            ]
           }
         }
       ],
       "id": 5
     },
     {
-      "address": "1111111",
-      "phone": "111111111",
-      "totalPrice": 40,
-      "subtotalPrice": 20,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "pizza",
-          "amount": 1,
-          "price": 20,
-          "priceSingle": 20,
-          "name": "Nonna Alba's Pizza"
-        }
-      ],
-      "id": 6
-    },
-    {
-      "address": "111111",
-      "phone": "111111111",
-      "totalPrice": 40,
-      "subtotalPrice": 20,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "pizza",
-          "amount": 1,
-          "price": 20,
-          "priceSingle": 20,
-          "name": "Nonna Alba's Pizza"
-        }
-      ],
-      "id": 7
-    },
-    {
-      "address": "12121sd",
-      "phone": "111111111",
-      "totalPrice": 40,
-      "subtotalPrice": 20,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "pizza",
-          "amount": 1,
-          "price": 20,
-          "priceSingle": 20,
-          "name": "Nonna Alba's Pizza",
-          "params": {
-            "sauce": [
-              "tomato"
-            ],
-            "toppings": [
-              "olives",
-              "redPeppers",
-              "greenPeppers",
-              "mushrooms",
-              "basil"
-            ],
-            "crust": [
-              "standard"
-            ]
-          }
-        }
-      ],
-      "id": 8
-    },
-    {
-      "address": "1212122",
-      "phone": "111111111",
-      "totalPrice": 44,
-      "subtotalPrice": 24,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "pizza",
-          "amount": 1,
-          "price": 24,
-          "priceSingle": 24,
-          "name": "Nonna Alba's Pizza",
-          "params": {
-            "sauce": [
-              "tomato"
-            ],
-            "toppings": [
-              "olives",
-              "redPeppers",
-              "greenPeppers",
-              "basil",
-              "salami"
-            ],
-            "crust": [
-              "wholewheat"
-            ]
-          }
-        }
-      ],
-      "id": 9
-    },
-    {
-      "address": "1212122",
-      "phone": "111111111",
-      "totalPrice": 47,
-      "subtotalPrice": 27,
-      "totalNumber": 3,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "salad",
-          "amount": 2,
-          "price": 18,
-          "priceSingle": 9,
-          "name": "Nonno Alberto's Salad",
-          "params": {
-            "ingredients": [
-              "cucumber",
-              "tomatoes",
-              "olives",
-              "herbs"
-            ]
-          }
-        },
-        {
-          "id": "breakfast",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "name": "Zia Giulia's Breakfast",
-          "params": {
-            "coffee": [
-              "latte"
-            ]
-          }
-        }
-      ],
-      "id": 10
-    },
-    {
-      "address": "1212121",
-      "phone": "111111111",
-      "totalPrice": 40,
-      "subtotalPrice": 20,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "pizza",
-          "amount": 1,
-          "price": 20,
-          "priceSingle": 20,
-          "name": "Nonna Alba's Pizza",
-          "params": {
-            "sauce": [
-              "tomato"
-            ],
-            "toppings": [
-              "olives",
-              "redPeppers",
-              "greenPeppers",
-              "mushrooms",
-              "basil"
-            ],
-            "crust": [
-              "standard"
-            ]
-          }
-        }
-      ],
-      "id": 11
-    },
-    {
-      "address": "1212121",
+      "address": "asdsadasd",
       "phone": "121212121",
-      "totalPrice": 40,
-      "subtotalPrice": 20,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "pizza",
-          "amount": 1,
-          "price": 20,
-          "priceSingle": 20,
-          "params": {
-            "sauce": [
-              "tomato"
-            ],
-            "toppings": [
-              "olives",
-              "redPeppers",
-              "greenPeppers",
-              "mushrooms",
-              "basil"
-            ],
-            "crust": [
-              "standard"
-            ]
-          }
-        }
-      ],
-      "id": 12
-    },
-    {
-      "address": "12121212",
-      "phone": "121212121",
-      "totalPrice": 43,
-      "subtotalPrice": 23,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "pizza",
-          "amount": 1,
-          "price": 23,
-          "priceSingle": 23,
-          "params": {
-            "sauce": [
-              "tomato"
-            ],
-            "toppings": [
-              "olives",
-              "redPeppers",
-              "greenPeppers",
-              "mushrooms",
-              "basil",
-              "salami"
-            ],
-            "crust": [
-              "standard"
-            ]
-          }
-        }
-      ],
-      "id": 13
-    },
-    {
-      "address": "12121212",
-      "phone": "121212121",
-      "totalPrice": 127,
-      "subtotalPrice": 107,
+      "totalPrice": 138,
+      "subtotalPrice": 118,
       "totalNumber": 7,
       "deliveryFee": 20,
       "products": [
         {
-          "name": "salad",
-          "amount": 3,
-          "price": 27,
-          "priceSingle": 9,
-          "params": {
-            "ingredients": [
-              "cucumber",
-              "tomatoes",
-              "olives",
-              "herbs"
-            ]
-          }
-        },
-        {
           "name": "pizza",
-          "amount": 4,
-          "price": 80,
+          "amount": 5,
+          "price": 100,
           "priceSingle": 20,
           "params": {
             "sauce": [
@@ -647,9 +373,23 @@
               "standard"
             ]
           }
+        },
+        {
+          "name": "salad",
+          "amount": 2,
+          "price": 18,
+          "priceSingle": 9,
+          "params": {
+            "ingredients": [
+              "cucumber",
+              "tomatoes",
+              "olives",
+              "herbs"
+            ]
+          }
         }
       ],
-      "id": 14
+      "id": 6
     }
   ]
 }

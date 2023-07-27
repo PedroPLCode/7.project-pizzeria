@@ -295,29 +295,29 @@
     }
 
 
-    prepareCartProductParamsforSendOrder() {
+    prepareCartProductParamsOnlyIds() {
       const thisProduct = this;
 
       const formData = utils.serializeFormToObject(thisProduct.dom.form);
 
-      const paramsForSendOrder = {};
+      const paramsOnlyIds = {};
       
       for(let paramId in thisProduct.data.params) {
         const param = thisProduct.data.params[paramId];
 
-        paramsForSendOrder[paramId] = {}
-        const listSelected = [];
+        paramsOnlyIds[paramId] = {}
+        const listOfSelected = [];
       
         for(let optionId in param.options) {
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
 
           if (optionSelected) {
-            listSelected.push(optionId);
+            listOfSelected.push(optionId);
           }
         }
-        paramsForSendOrder[paramId] = listSelected;
+        paramsOnlyIds[paramId] = listOfSelected;
       }
-      return paramsForSendOrder;
+      return paramsOnlyIds;
     }
 
 
@@ -331,7 +331,7 @@
         priceSingle: thisProduct.priceSingle,
         price: thisProduct.priceSingle * thisProduct.amountWidget.value,
         params: thisProduct.prepareCartProductParams(),
-        paramsForSendOrder: thisProduct.prepareCartProductParamsforSendOrder(),
+        paramsOnlyIds: thisProduct.prepareCartProductParamsOnlyIds(),
       };
     }
 
@@ -714,7 +714,7 @@
       thisCartProduct.amount = menuProduct.amount;
       thisCartProduct.priceSingle = menuProduct.priceSingle;
       thisCartProduct.price = menuProduct.price;
-      thisCartProduct.paramsForSendOrder = menuProduct.paramsForSendOrder;
+      thisCartProduct.paramsOnlyIds = menuProduct.paramsOnlyIds;
       thisCartProduct.id = menuProduct.id;
 
       thisCartProduct.getElements(element);
@@ -794,7 +794,7 @@
         amount: thisCartProduct.amount,
         price: thisCartProduct.price,
         priceSingle: thisCartProduct.priceSingle,
-        params: thisCartProduct.paramsForSendOrder,
+        params: thisCartProduct.paramsOnlyIds,
       }
     }
   }

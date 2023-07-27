@@ -204,153 +204,11 @@
   ],
   "orders": [
     {
-      "address": "1212121212",
-      "phone": "111111111",
-      "totalPrice": 40,
-      "subtotalPrice": 20,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "pizza",
-          "amount": 1,
-          "price": 20,
-          "priceSingle": 20
-        }
-      ],
-      "id": 1
-    },
-    {
-      "address": "1212121212",
-      "phone": "111111111",
-      "totalPrice": 40,
-      "subtotalPrice": 20,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "pizza",
-          "amount": 1,
-          "price": 20,
-          "priceSingle": 20
-        }
-      ],
-      "id": 2
-    },
-    {
       "address": "12121212",
-      "phone": "111111111",
-      "totalPrice": 60,
-      "subtotalPrice": 40,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "pizza",
-          "amount": 2,
-          "price": 40,
-          "priceSingle": 20,
-          "params": {
-            "sauce": [
-              "tomato"
-            ],
-            "toppings": [
-              "olives",
-              "redPeppers",
-              "greenPeppers",
-              "mushrooms",
-              "basil"
-            ],
-            "crust": [
-              "standard"
-            ]
-          }
-        }
-      ],
-      "id": 3
-    },
-    {
-      "address": "12121212",
-      "phone": "111111111",
-      "totalPrice": 60,
-      "subtotalPrice": 40,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "pizza",
-          "amount": 2,
-          "price": 40,
-          "priceSingle": 20,
-          "params": {
-            "sauce": [
-              "tomato"
-            ],
-            "toppings": [
-              "olives",
-              "redPeppers",
-              "greenPeppers",
-              "mushrooms",
-              "basil"
-            ],
-            "crust": [
-              "standard"
-            ]
-          }
-        }
-      ],
-      "id": 4
-    },
-    {
-      "address": "asdsadasd",
       "phone": "121212121",
-      "totalPrice": 123,
-      "subtotalPrice": 103,
-      "totalNumber": 7,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "pizza",
-          "amount": 5,
-          "price": 85,
-          "priceSingle": 17,
-          "params": {
-            "sauce": [
-              "tomato"
-            ],
-            "toppings": [
-              "olives",
-              "mushrooms",
-              "salami"
-            ],
-            "crust": [
-              "standard"
-            ]
-          }
-        },
-        {
-          "name": "salad",
-          "amount": 2,
-          "price": 18,
-          "priceSingle": 9,
-          "params": {
-            "ingredients": [
-              "cucumber",
-              "tomatoes",
-              "olives",
-              "herbs"
-            ]
-          }
-        }
-      ],
-      "id": 5
-    },
-    {
-      "address": "asdsadasd",
-      "phone": "121212121",
-      "totalPrice": 138,
-      "subtotalPrice": 118,
-      "totalNumber": 7,
+      "totalPrice": 147,
+      "subtotalPrice": 127,
+      "totalNumber": 8,
       "deliveryFee": 20,
       "products": [
         {
@@ -375,21 +233,43 @@
           }
         },
         {
-          "name": "salad",
-          "amount": 2,
-          "price": 18,
+          "name": "breakfast",
+          "amount": 3,
+          "price": 27,
           "priceSingle": 9,
           "params": {
-            "ingredients": [
-              "cucumber",
-              "tomatoes",
-              "olives",
-              "herbs"
+            "coffee": [
+              "latte"
             ]
           }
         }
       ],
-      "id": 6
+      "id": 1
+    },
+    {
+      "address": "12121212",
+      "phone": "121212121",
+      "totalPrice": 38,
+      "subtotalPrice": 18,
+      "totalNumber": 2,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "name": "cake",
+          "amount": 1,
+          "price": 9,
+          "priceSingle": 9,
+          "params": {}
+        },
+        {
+          "name": "cake",
+          "amount": 1,
+          "price": 9,
+          "priceSingle": 9,
+          "params": {}
+        }
+      ],
+      "id": 2
     }
   ]
 }

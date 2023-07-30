@@ -204,43 +204,40 @@
   ],
   "orders": [
     {
-      "address": "1112121",
-      "phone": "111111111",
-      "totalPrice": 89,
-      "subtotalPrice": 69,
-      "totalNumber": 5,
+      "address": "121212",
+      "phone": "111111324",
+      "totalPrice": 29,
+      "subtotalPrice": 9,
+      "totalNumber": 1,
       "deliveryFee": 20,
       "products": [
         {
-          "name": "pizza",
-          "amount": 2,
-          "price": 42,
-          "priceSingle": 21,
-          "params": {
-            "sauce": [
-              "tomato"
-            ],
-            "toppings": [
-              "redPeppers",
-              "greenPeppers",
-              "mushrooms",
-              "basil",
-              "salami"
-            ],
-            "crust": [
-              "standard"
-            ]
-          }
-        },
-        {
           "name": "cake",
-          "amount": 3,
-          "price": 27,
+          "amount": 1,
+          "price": 9,
           "priceSingle": 9,
           "params": {}
         }
       ],
       "id": 1
+    },
+    {
+      "address": "121212",
+      "phone": "111111324",
+      "totalPrice": 29,
+      "subtotalPrice": 9,
+      "totalNumber": 1,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "name": "cake",
+          "amount": 1,
+          "price": 9,
+          "priceSingle": 9,
+          "params": {}
+        }
+      ],
+      "id": 2
     }
   ],
   "events": [

@@ -207,6 +207,11 @@ class Cart {
     thisCart.dom.toggleTrigger.classList.remove(classNames.cart.flashWhenUpdated);
     thisCart.dom.form.classList.remove(classNames.cart.flashWhenUpdated);
   }
+
+  closeCart(){ //test
+    const thisCart = this;
+    thisCart.dom.wrapper.classList.remove(classNames.cart.wrapperActive);
+  }
 }
 
 export default Cart;

@@ -2,6 +2,7 @@ import {classNames, select} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import API from './components/API.js';
+import Booking from './components/Booking.js';
   
 export const app = {
   initPages: function() {
@@ -30,6 +31,8 @@ export const app = {
 
         const id = clickedElement.getAttribute('href').replace('#', '');
         thisApp.activatePage(id);
+        thisApp.cart.clearMessages(); // czyszczenie wiadomości
+        thisApp.cart.closeCart(); //i zamknąć kartę
 
         window.location.hash = '#/' + id;
       })
@@ -81,12 +84,20 @@ export const app = {
     });
   },
 
+  initBooking: function() {
+    const thisApp = this;
+
+    thisApp.bookingWidgetElement = document.querySelector(select.containerOf.booking);
+    thisApp.booking = new Booking(thisApp.bookingWidgetElement);
+  },
+
   init: function(){
     const thisApp = this;
 
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
+    thisApp.initBooking();
   },
 };
 

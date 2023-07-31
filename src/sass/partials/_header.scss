@@ -1,5 +1,6 @@
 .header {
-  padding: ($base-size * 5) 0 ($base-size * 8) 0;
+  padding: ($base-size * 1) 0 ($base-size * 5) 0;
+  top: 0px;
   background: $color-dark;
   color: $color-light;
 
@@ -44,7 +45,7 @@
 .main-nav {
   position: absolute;
   @include flex(row, flex-start, flex-start);
-  bottom: ($base-size * -8);
+  bottom: ($base-size * -5);
 
   a {
     @extend .h2;

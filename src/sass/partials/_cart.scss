@@ -4,7 +4,7 @@
   right: 0;
   top: $base-size;
   padding: ($base-size) ($base-size * 1.5);
-  background: $color-light;
+  background: lighten($color-dark, 75%);
   border-radius: $radius;
   color: $color-main;
   font-size: $base-size;

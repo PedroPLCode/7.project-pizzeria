@@ -204,40 +204,26 @@
   ],
   "orders": [
     {
-      "address": "121212",
-      "phone": "111111324",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
+      "address": "qwewqewq",
+      "phone": "qwqqweqwe",
+      "totalPrice": 47,
+      "subtotalPrice": 27,
+      "totalNumber": 3,
       "deliveryFee": 20,
       "products": [
         {
-          "name": "cake",
-          "amount": 1,
-          "price": 9,
+          "name": "breakfast",
+          "amount": 3,
+          "price": 27,
           "priceSingle": 9,
-          "params": {}
+          "params": {
+            "coffee": [
+              "espresso"
+            ]
+          }
         }
       ],
       "id": 1
-    },
-    {
-      "address": "121212",
-      "phone": "111111324",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 2
     }
   ],
   "events": [

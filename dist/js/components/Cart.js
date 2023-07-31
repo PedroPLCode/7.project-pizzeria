@@ -208,7 +208,7 @@ class Cart {
     thisCart.dom.form.classList.remove(classNames.cart.flashWhenUpdated);
   }
 
-  closeCart(){ //test
+  closeCart(){
     const thisCart = this;
     thisCart.dom.wrapper.classList.remove(classNames.cart.wrapperActive);
   }

@@ -46,38 +46,37 @@ export const app = {
     return new Promise(resolve => setTimeout(resolve, ms));
   },
 
-  flashPagesDown() {  
-    for (let singlePage of app.pages) {
-      singlePage.classList.add(classNames.pages.flashWhenUpdated);
-    }
+  flashElementDown(elementToFlash, classTochange) {  
+      elementToFlash.classList.add(classTochange);
   },
 
-  flashPagesUp() {  
-    for (let singlePage of app.pages) {
-      singlePage.classList.remove(classNames.pages.flashWhenUpdated);
-    }
+  flashElementUp(elementToFlash, classTochange) {  
+      elementToFlash.classList.remove(classTochange);
   },
 
   activatePage: async function(pageId) {
     const thisApp = this;
 
     for (let page of thisApp.pages) {
-
-      thisApp.flashPagesDown();
+      thisApp.flashElementDown(page, classNames.pages.flashWhenUpdated);
       await thisApp.sleep(select.pages.delayTime);
       page.classList.toggle(
         classNames.pages.active, 
         page.id == pageId
         );
       await thisApp.sleep(select.pages.delayTime);
-      thisApp.flashPagesUp();
+      thisApp.flashElementUp(page, classNames.pages.flashWhenUpdated);
     }
 
     for (let link of thisApp.navLinks) {
+      thisApp.flashElementDown(link, classNames.nav.flashWhenUpdated);
+      await thisApp.sleep(select.nav.delayTime);
       link.classList.toggle(
         classNames.nav.active, 
         link.getAttribute('href') == '#' + pageId
         );
+      await thisApp.sleep(select.nav.delayTime);
+      thisApp.flashElementUp(link, classNames.nav.flashWhenUpdated);
     }
   },
 

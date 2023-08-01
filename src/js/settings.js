@@ -70,6 +70,7 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    delayTime: 100,
   },
 };
   
@@ -89,6 +90,7 @@ export const classNames = {
   },
   nav: {
     active: 'active',
+    flashWhenUpdated: 'flash',
   },
   pages: {
     active: 'active',

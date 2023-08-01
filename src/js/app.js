@@ -42,14 +42,35 @@ export const app = {
     }
   }, 
 
-  activatePage: function(pageId) {
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  },
+
+  flashPagesDown() {  
+    for (let singlePage of app.pages) {
+      singlePage.classList.add(classNames.pages.flashWhenUpdated);
+    }
+  },
+
+  flashPagesUp() {  
+    for (let singlePage of app.pages) {
+      singlePage.classList.remove(classNames.pages.flashWhenUpdated);
+    }
+  },
+
+  activatePage: async function(pageId) {
     const thisApp = this;
 
     for (let page of thisApp.pages) {
+
+      thisApp.flashPagesDown();
+      await thisApp.sleep(select.pages.delayTime);
       page.classList.toggle(
         classNames.pages.active, 
         page.id == pageId
         );
+      await thisApp.sleep(select.pages.delayTime);
+      thisApp.flashPagesUp();
     }
 
     for (let link of thisApp.navLinks) {

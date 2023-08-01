@@ -54,6 +54,9 @@ export const select = {
     message: '.cart__message',
     delayTime: 200,
   },
+  pages: {
+    delayTime: 100,
+  },
   cartProduct: {
     amountWidget: '.widget-amount',
     price: '.cart__product-price',
@@ -89,6 +92,7 @@ export const classNames = {
   },
   pages: {
     active: 'active',
+    flashWhenUpdated: 'flash',
   },
 };
 

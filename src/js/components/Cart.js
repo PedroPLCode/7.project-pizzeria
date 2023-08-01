@@ -194,16 +194,12 @@ class Cart {
     thisCart.update();
   } 
 
-  sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
   async flash() {  
     const thisCart = this;
 
     thisCart.dom.toggleTrigger.classList.add(classNames.cart.flashWhenUpdated);
     thisCart.dom.form.classList.add(classNames.cart.flashWhenUpdated);
-    await thisCart.sleep(select.cart.delayTime);
+    await app.sleep(select.cart.delayTime);
     thisCart.dom.toggleTrigger.classList.remove(classNames.cart.flashWhenUpdated);
     thisCart.dom.form.classList.remove(classNames.cart.flashWhenUpdated);
   }

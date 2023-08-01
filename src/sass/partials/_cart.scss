@@ -10,6 +10,14 @@
   font-size: $base-size;
   box-shadow: 0 0 $base-size rgba(0, 0, 0, 0.2);
   z-index: 9999;
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.2s all;
+
+  &.flash {
+    transform: scale(0.98);
+    opacity: 0.5;
+  }
 
   &.active {
     .cart__content {
@@ -23,14 +31,6 @@
     @include flex(row, center, space-between);
     text-transform: uppercase;
     cursor: pointer;
-    opacity: 1;
-    transform: scale(1);
-    transition: 0.2s all;
-
-    &.flash {
-      transform: scale(0.98);
-      opacity: 0.5;
-    }
   }
 
   &__icon {
@@ -168,17 +168,6 @@
       margin-bottom: ($base-size / 2);
     }
 
-  }
-  
-  &__order {
-    opacity: 1;
-    transform: scale(1);
-    transition: 0.2s all;
-
-    &.flash {
-      transform: scale(0.98);
-      opacity: 0.5;
-    }
   }
 
 }

@@ -40,6 +40,7 @@ export const select = {
     },
   },
   cart: {
+    wrapper: '.cart',
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',
     content: '.cart__content',

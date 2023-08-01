@@ -44,8 +44,6 @@ class API {
       },
       body: JSON.stringify(thisAPI.payload),
     };
-      
-    app.cart.flash();
 
     if (app.cart.validate(thisAPI.payload)) {
       fetch(url, options)
@@ -64,13 +62,13 @@ class API {
 
 
   orderSentOK() {
-    app.cart.resetToDefault();
-
     const activeProduct = document.querySelector(select.all.menuProductsActive);
     activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
         
     app.cart.clearMessages();
     app.cart.printMessage(messages.confirmation);
+
+    app.cart.resetToDefault();
   }
 
 

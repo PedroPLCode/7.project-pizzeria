@@ -95,7 +95,7 @@ class Cart {
   }
 
 
-  update() {
+  async update() {
     const thisCart  = this;
 
     thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
@@ -113,7 +113,8 @@ class Cart {
 
     thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
 
-    thisCart.flash();
+    app.flashElementDown(thisCart.dom.wrapper, classNames.cart.flashWhenUpdated);
+    await app.sleep(select.cart.delayTime);
 
     thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
     thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
@@ -122,6 +123,7 @@ class Cart {
     for (let singleTotalPrice of thisCart.dom.totalPrice) {
       singleTotalPrice.innerHTML = thisCart.totalPrice;
     }
+    app.flashElementUp(thisCart.dom.wrapper, classNames.cart.flashWhenUpdated);
   }
 
 
@@ -194,15 +196,6 @@ class Cart {
     thisCart.update();
   } 
 
-  async flash() {  
-    const thisCart = this;
-
-    thisCart.dom.toggleTrigger.classList.add(classNames.cart.flashWhenUpdated);
-    thisCart.dom.form.classList.add(classNames.cart.flashWhenUpdated);
-    await app.sleep(select.cart.delayTime);
-    thisCart.dom.toggleTrigger.classList.remove(classNames.cart.flashWhenUpdated);
-    thisCart.dom.form.classList.remove(classNames.cart.flashWhenUpdated);
-  }
 
   closeCart(){
     const thisCart = this;

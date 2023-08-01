@@ -46,6 +46,14 @@
   position: absolute;
   @include flex(row, flex-start, flex-start);
   bottom: ($base-size * -5);
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.2s all;
+
+  &.flash {
+    transform: scale(0.94);
+    opacity: 0.15;
+  }
 
   a {
     @extend .h2;
@@ -57,14 +65,6 @@
     background: darken($color-dark, 5%);
     border-top-left-radius: $radius;
     border-top-right-radius: $radius;
-    opacity: 1;
-    transform: scale(1);
-    transition: 0.2s all;
-  
-    &.flash {
-      transform: scale(0.5);
-      opacity: 0;
-    }
 
     &.active {
       background: lighten($color-dark, 75%);

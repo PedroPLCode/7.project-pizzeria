@@ -1,26 +1,21 @@
 #pages {
     > * {
       display: none;
-      opacity: 1;
-      transform: scale(1);
-      transition: 0.2s all;
-
-      &.flash {
-        transform: scale(0.95);
-        opacity: 0;
-      }
     }
   
     > .active {
       display: block;
-      opacity: 1;
-      transform: scale(1);
-      transition: 0.2s all;
+    }
+  }
 
-      &.flash {
-        transform: scale(0.95);
-        opacity: 0;
-      }
+  .pages {
+    opacity: 1;
+    transform: scale(1);
+    transition: 0.2s all;
+  
+    &.flash {
+      transform: scale(0.98);
+      opacity: 0.1;
     }
   }
   

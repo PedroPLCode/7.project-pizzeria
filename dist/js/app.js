@@ -22,7 +22,7 @@ export const app = {
       }
     }
 
-    thisApp.activatePage(pageMathingHash);
+    thisApp.activate(pageMathingHash);
 
     for (let link of thisApp.navLinks) {
       link.addEventListener('click', function(event) {
@@ -30,7 +30,7 @@ export const app = {
         event.preventDefault();
 
         const id = clickedElement.getAttribute('href').replace('#', '');
-        thisApp.activatePage(id);
+        thisApp.activate(id);
 
         if (id == 'booking') {
           thisApp.cart.clearMessages(); 
@@ -54,30 +54,42 @@ export const app = {
       elementToFlash.classList.remove(classTochange);
   },
 
-  activatePage: async function(pageId) {
+  async activatePage(pageId) {
     const thisApp = this;
+    
+    const pageToReload = document.querySelector(select.pages.wrapper);
+    thisApp.flashElementDown(pageToReload, classNames.pages.flashWhenUpdated);
+    await thisApp.sleep(select.pages.delayTime);
 
     for (let page of thisApp.pages) {
-      thisApp.flashElementDown(page, classNames.pages.flashWhenUpdated);
-      await thisApp.sleep(select.pages.delayTime);
       page.classList.toggle(
         classNames.pages.active, 
         page.id == pageId
         );
-      await thisApp.sleep(select.pages.delayTime);
-      thisApp.flashElementUp(page, classNames.pages.flashWhenUpdated);
     }
+    thisApp.flashElementUp(pageToReload, classNames.pages.flashWhenUpdated);
+  },
+
+  async activateLinks(pageId) {
+    const thisApp = this;
+
+    const linkToReload = document.querySelector(select.nav.wrapper);
+    thisApp.flashElementDown(linkToReload, classNames.nav.flashWhenUpdated);
+    await thisApp.sleep(select.nav.delayTime);
 
     for (let link of thisApp.navLinks) {
-      thisApp.flashElementDown(link, classNames.nav.flashWhenUpdated);
-      await thisApp.sleep(select.nav.delayTime);
       link.classList.toggle(
         classNames.nav.active, 
         link.getAttribute('href') == '#' + pageId
-        );
-      await thisApp.sleep(select.nav.delayTime);
-      thisApp.flashElementUp(link, classNames.nav.flashWhenUpdated);
+       );
     }
+    thisApp.flashElementUp(linkToReload, classNames.nav.flashWhenUpdated);
+  },
+
+  activate: function(pageId) {
+    const thisApp = this;
+    thisApp.activatePage(pageId);
+    thisApp.activateLinks(pageId);
   },
 
   initMenu: function() {

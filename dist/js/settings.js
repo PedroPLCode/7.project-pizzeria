@@ -55,7 +55,8 @@ export const select = {
     delayTime: 200,
   },
   pages: {
-    delayTime: 100,
+    wrapper: '.pages',
+    delayTime: 300,
   },
   cartProduct: {
     amountWidget: '.widget-amount',
@@ -69,8 +70,9 @@ export const select = {
     tables: '.floor-plan .table',
   },
   nav: {
+    wrapper: '.main-nav',
     links: '.main-nav a',
-    delayTime: 100,
+    delayTime: 300,
   },
 };
   

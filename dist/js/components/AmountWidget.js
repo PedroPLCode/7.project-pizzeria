@@ -1,3 +1,4 @@
+import {app} from '../app.js';
 import {select, settings} from '../settings.js';
 
 class AmountWidget {
@@ -26,16 +27,19 @@ class AmountWidget {
     const thisWidget = this;
 
     thisWidget.dom.input.addEventListener('change', function(){
+      app.cart.clearMessages();
       thisWidget.setValue(thisWidget.dom.input.value);
     });
 
     thisWidget.dom.linkDecrease.addEventListener('click', function(value) {
       value.preventDefault();
+      app.cart.clearMessages();
       thisWidget.setValue(thisWidget.value - 1);
     });
 
     thisWidget.dom.linkIncrease.addEventListener('click', function(value) {
       value.preventDefault();
+      app.cart.clearMessages();
       thisWidget.setValue(thisWidget.value + 1);
     });
   }

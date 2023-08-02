@@ -109,6 +109,7 @@ export const messages = {
     notSent: ['ERROR. ORDER NOT SENT.'],
   },
   confirmation: ['ORDER CONFIRMATION.', 'Order sent successfully.', 'Please wait for delivery.'], 
+  editNotImplemented: ['Sorry', 'Function under construction.', 'Not implemented yet.'],
 }
   
 export const settings = {

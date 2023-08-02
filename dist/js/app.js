@@ -57,8 +57,8 @@ export const app = {
   async activatePage(pageId) {
     const thisApp = this;
     
-    const pageToReload = document.querySelector(select.pages.wrapper);
-    thisApp.flashElementDown(pageToReload, classNames.pages.flashWhenUpdated);
+    const pagesToReload = document.querySelector(select.pages.wrapper);
+    thisApp.flashElementDown(pagesToReload, classNames.pages.flashWhenUpdated);
     await thisApp.sleep(select.pages.delayTime);
 
     for (let page of thisApp.pages) {
@@ -67,14 +67,14 @@ export const app = {
         page.id == pageId
         );
     }
-    thisApp.flashElementUp(pageToReload, classNames.pages.flashWhenUpdated);
+    thisApp.flashElementUp(pagesToReload, classNames.pages.flashWhenUpdated);
   },
 
   async activateLinks(pageId) {
     const thisApp = this;
 
-    const linkToReload = document.querySelector(select.nav.wrapper);
-    thisApp.flashElementDown(linkToReload, classNames.nav.flashWhenUpdated);
+    const linksToReload = document.querySelector(select.nav.wrapper);
+    thisApp.flashElementDown(linksToReload, classNames.nav.flashWhenUpdated);
     await thisApp.sleep(select.nav.delayTime);
 
     for (let link of thisApp.navLinks) {
@@ -83,7 +83,7 @@ export const app = {
         link.getAttribute('href') == '#' + pageId
        );
     }
-    thisApp.flashElementUp(linkToReload, classNames.nav.flashWhenUpdated);
+    thisApp.flashElementUp(linksToReload, classNames.nav.flashWhenUpdated);
   },
 
   activate: function(pageId) {

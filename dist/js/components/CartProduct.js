@@ -1,4 +1,5 @@
-import {select} from '../settings.js';
+import {app} from '../app.js';
+import {select, messages} from '../settings.js';
 import AmountWidget from './AmountWidget.js';
 
 class CartProduct {
@@ -58,11 +59,13 @@ class CartProduct {
 
     thisCartProduct.dom.edit.addEventListener('click', function(event) {
       event.preventDefault();
+      app.cart.clearMessages();
+      app.cart.printMessage(messages.editNotImplemented);
     });
 
     thisCartProduct.dom.remove.addEventListener('click', function(event) {
       event.preventDefault();
-
+      app.cart.clearMessages();
       thisCartProduct.remove();
     });
   }

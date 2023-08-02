@@ -1,3 +1,4 @@
+import {app} from '../app.js';
 import {select, settings, classNames, templates} from '../settings.js';
 import {utils} from '../utils.js';
 import AmountWidget from './AmountWidget.js';
@@ -53,12 +54,11 @@ class Product {
       event.preventDefault();
 
       const activeProduct = document.querySelector(select.all.menuProductsActive);
-
       if (activeProduct && activeProduct != thisProduct.element) {
         activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
       }
-
       thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
+      app.cart.clearMessages();
     });
   }
 
@@ -136,6 +136,8 @@ class Product {
 
     price *= thisProduct.amountWidget.value;
     thisProduct.dom.priceElem.innerHTML = price;
+
+    app.cart.clearMessages();
   }
 
 
@@ -165,7 +167,6 @@ class Product {
         }
       } 
     }
-
     thisProduct.dom.priceElem.innerHTML = thisProduct.data.price;
   }
 

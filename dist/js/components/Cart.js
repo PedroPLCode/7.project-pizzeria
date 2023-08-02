@@ -6,9 +6,7 @@ import CartProduct from './CartProduct.js';
 class Cart {
   constructor(element) {
     const thisCart = this;
-
     thisCart.products = [];
-
     thisCart.getElements(element);
     thisCart.initActions();
   }
@@ -81,16 +79,13 @@ class Cart {
     const thisCart  = this;
 
     const generatedHTML = templates.cartProduct(menuProduct);
-
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
-
     const cartContainer = document.querySelector(select.cart.productList);
     cartContainer.appendChild(generatedDOM);
 
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
 
     thisCart.clearMessages();
-
     thisCart.update();
   }
 
@@ -129,18 +124,14 @@ class Cart {
 
   remove(productToRemove) {
     const thisCart = this;
-
     productToRemove.dom.wrapper.remove();
-
     const indexToRemove = thisCart.products.indexOf(productToRemove);
     thisCart.products.splice(indexToRemove, 1);
-
     thisCart.update();
   }
 
 
   printMessage(msgs) {
-
     for (let msg of msgs) {
       let div = document.createElement('div');
       div.innerHTML = msg;
@@ -186,13 +177,10 @@ class Cart {
 
   resetToDefault() {
     const thisCart = this;
-
     for (let singleProduct of thisCart.products) {
       singleProduct.dom.wrapper.remove();
     }
-
     thisCart.products = [];
-
     thisCart.update();
   } 
 

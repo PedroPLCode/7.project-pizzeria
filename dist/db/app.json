@@ -204,159 +204,82 @@
   ],
   "orders": [
     {
-      "address": "213213213",
-      "phone": "121212121",
-      "totalPrice": 65,
-      "subtotalPrice": 45,
-      "totalNumber": 5,
+      "address": "12121212",
+      "phone": "121212122",
+      "totalPrice": 29,
+      "subtotalPrice": 9,
+      "totalNumber": 1,
       "deliveryFee": 20,
       "products": [
         {
-          "name": "breakfast",
-          "amount": 5,
-          "price": 45,
+          "name": "cake",
+          "amount": 1,
+          "price": 9,
           "priceSingle": 9,
-          "params": {
-            "coffee": [
-              "cappuccino"
-            ]
-          }
+          "params": {}
         }
       ],
       "id": 1
     },
     {
-      "address": "1212121212",
+      "address": "213213213213",
       "phone": "121212121",
-      "totalPrice": 65,
-      "subtotalPrice": 45,
-      "totalNumber": 5,
+      "totalPrice": 181,
+      "subtotalPrice": 161,
+      "totalNumber": 13,
       "deliveryFee": 20,
       "products": [
         {
           "name": "cake",
-          "amount": 5,
-          "price": 45,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 2
-    },
-    {
-      "address": "1212121212",
-      "phone": "121212121",
-      "totalPrice": 38,
-      "subtotalPrice": 18,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "cake",
-          "amount": 2,
-          "price": 18,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 3
-    },
-    {
-      "address": "1212121212",
-      "phone": "121212121",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 4
-    },
-    {
-      "address": "1212121212",
-      "phone": "121212121",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 5
-    },
-    {
-      "address": "1212121212",
-      "phone": "121212121",
-      "totalPrice": 38,
-      "subtotalPrice": 18,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "cake",
-          "amount": 2,
-          "price": 18,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 6
-    },
-    {
-      "address": "1212121212",
-      "phone": "121212121",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "breakfast",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {
-            "coffee": [
-              "latte"
-            ]
-          }
-        }
-      ],
-      "id": 7
-    },
-    {
-      "address": "12121212",
-      "phone": "121212121",
-      "totalPrice": 84,
-      "subtotalPrice": 64,
-      "totalNumber": 4,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "cake",
-          "amount": 2,
-          "price": 18,
+          "amount": 9,
+          "price": 81,
           "priceSingle": 9,
           "params": {}
         },
         {
           "name": "pizza",
-          "amount": 2,
-          "price": 46,
-          "priceSingle": 23,
+          "amount": 4,
+          "price": 80,
+          "priceSingle": 20,
+          "params": {
+            "sauce": [
+              "tomato"
+            ],
+            "toppings": [
+              "olives",
+              "redPeppers",
+              "greenPeppers",
+              "mushrooms",
+              "basil"
+            ],
+            "crust": [
+              "standard"
+            ]
+          }
+        }
+      ],
+      "id": 2
+    },
+    {
+      "address": "213213213",
+      "phone": "121212121",
+      "totalPrice": 167,
+      "subtotalPrice": 147,
+      "totalNumber": 11,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "name": "cake",
+          "amount": 6,
+          "price": 54,
+          "priceSingle": 9,
+          "params": {}
+        },
+        {
+          "name": "pizza",
+          "amount": 3,
+          "price": 75,
+          "priceSingle": 25,
           "params": {
             "sauce": [
               "tomato"
@@ -370,12 +293,58 @@
               "salami"
             ],
             "crust": [
+              "thin"
+            ]
+          }
+        },
+        {
+          "name": "salad",
+          "amount": 2,
+          "price": 18,
+          "priceSingle": 9,
+          "params": {
+            "ingredients": [
+              "cucumber",
+              "tomatoes",
+              "olives",
+              "herbs"
+            ]
+          }
+        }
+      ],
+      "id": 3
+    },
+    {
+      "address": "213213213",
+      "phone": "121212121",
+      "totalPrice": 40,
+      "subtotalPrice": 20,
+      "totalNumber": 1,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "name": "pizza",
+          "amount": 1,
+          "price": 20,
+          "priceSingle": 20,
+          "params": {
+            "sauce": [
+              "tomato"
+            ],
+            "toppings": [
+              "olives",
+              "redPeppers",
+              "greenPeppers",
+              "mushrooms",
+              "basil"
+            ],
+            "crust": [
               "standard"
             ]
           }
         }
       ],
-      "id": 8
+      "id": 4
     }
   ],
   "events": [

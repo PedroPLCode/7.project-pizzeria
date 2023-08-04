@@ -1,4 +1,5 @@
 import {app} from '../app.js';
+import {utils} from '../utils.js';
 import {select, settings, classNames, messages} from '../settings.js';
 
 class API {
@@ -77,6 +78,59 @@ class API {
     messages.error.notSent.push(errorCode);
     app.cart.printMessage(messages.error.notSent);
     messages.error.notSent.pop();
+  }
+
+
+  getBookingsAndEventsData(minDate, maxDate) {
+    const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(minDate);
+    const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(maxDate);
+
+    const params = {
+      booking: [
+        startDateParam,
+        endDateParam,
+      ],
+      eventCurrent: [
+        settings.db.notRepeatParam,
+        startDateParam,
+        endDateParam,
+      ],
+      eventRepeat: [
+        settings.db.repeatParam,
+        endDateParam,
+      ],
+    };
+
+    const urls = {
+      booking: settings.db.url + '/' + settings.db.bookings + '?' + params.booking.join('&'),
+      eventCurrent: settings.db.url + '/' + settings.db.events + '?' + params.eventCurrent.join('&'),
+      eventRepeat: settings.db.url + '/' + settings.db.events + '?' + params.eventRepeat.join('&'),
+    };
+
+    Promise.all([
+      fetch(urls.booking),
+      fetch(urls.eventCurrent),
+      fetch(urls.eventRepeat),
+    ])
+      .then(function(allResponses) {
+        const bookingResponse = allResponses[0];
+        const eventCurrentResponse = allResponses[1];
+        const eventRepeatResponse = allResponses[2]; 
+        console.log(allResponses);
+        console.log(bookingResponse);
+        console.log(eventCurrentResponse);
+        console.log(eventRepeatResponse);
+        return Promise.all([
+          bookingResponse.json(),
+          eventCurrentResponse.json(),
+          eventRepeatResponse.json(),
+        ]);
+      })
+      .then(function([bookings, eventCurrent, eventRepeat]) {
+        console.log(bookings);
+        console.log(eventCurrent);
+        console.log(eventRepeat);
+      });
   }
 }
 

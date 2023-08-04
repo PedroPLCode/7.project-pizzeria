@@ -1,3 +1,4 @@
+import {app} from '../app.js';
 import {select, templates} from '../settings.js';
 import {utils} from '../utils.js';
 import AmountWidget from './AmountWidget.js'
@@ -10,6 +11,7 @@ class Booking {
     thisBooking.render(element);
     thisBooking.getElements(element);
     thisBooking.initWidgets();
+    app.api.getBookingsAndEventsData(this.datePicker.minDate, this.datePicker.maxDate);
   }
 
   render(element) {

@@ -1,5 +1,5 @@
 import BaseWidget from '../components/BaseWidget.js';
-import utils from '../utils.js';
+import {utils} from '../utils.js';
 import {select, settings} from '../settings.js';
 
 class DatePicker extends BaseWidget{
@@ -30,6 +30,7 @@ class DatePicker extends BaseWidget{
       ],
       onChange: function(selectedDates, dateStr) {
         thisWidget.value = dateStr;
+        //tutaj dodać jakieś komunikaty dla uzytkownika.
       },
     });
   }
@@ -41,9 +42,7 @@ class DatePicker extends BaseWidget{
     return true;
   }
 
-  renderValue(){
-
-  }
+  renderValue(){}
 }
 
 export default DatePicker;

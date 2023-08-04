@@ -6,22 +6,18 @@ class API {
 
   getData() {
     const url = settings.db.url + '/' + settings.db.products;
-
     fetch(url) 
     .then(function(rawResponse) {
       return rawResponse.json();
     })
     .then(function(parsedResponse) {
       app.data.products = parsedResponse;
-
       app.initMenu();
     });
   }
 
-
   sentOrder() {
     const thisAPI = this;
-
     const url = settings.db.url + '/' + settings.db.orders;
 
     thisAPI.payload = {
@@ -61,17 +57,13 @@ class API {
     } 
   } 
 
-
   orderSentOK() {
     const activeProduct = document.querySelector(select.all.menuProductsActive);
     activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
-        
     app.cart.clearMessages();
     app.cart.printMessage(messages.confirmation);
-
     app.cart.resetToDefault();
   }
-
 
   handleError(errorCode) {
     app.cart.clearMessages();
@@ -79,7 +71,6 @@ class API {
     app.cart.printMessage(messages.error.notSent);
     messages.error.notSent.pop();
   }
-
 
   getBookingsAndEventsData(minDate, maxDate) {
     const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(minDate);
@@ -116,10 +107,6 @@ class API {
         const bookingResponse = allResponses[0];
         const eventCurrentResponse = allResponses[1];
         const eventRepeatResponse = allResponses[2]; 
-        console.log(allResponses);
-        console.log(bookingResponse);
-        console.log(eventCurrentResponse);
-        console.log(eventRepeatResponse);
         return Promise.all([
           bookingResponse.json(),
           eventCurrentResponse.json(),
@@ -127,9 +114,7 @@ class API {
         ]);
       })
       .then(function([bookings, eventCurrent, eventRepeat]) {
-        console.log(bookings);
-        console.log(eventCurrent);
-        console.log(eventRepeat);
+        app.booking.parseData(bookings, eventCurrent, eventRepeat);
       });
   }
 }

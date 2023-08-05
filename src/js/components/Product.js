@@ -58,7 +58,7 @@ class Product {
         activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
       }
       thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-      app.cart.clearMessages();
+      app.cart.clearMessages(select.cart.message);
     });
   }
 
@@ -137,7 +137,7 @@ class Product {
     price *= thisProduct.amountWidget.value;
     thisProduct.dom.priceElem.innerHTML = price;
 
-    app.cart.clearMessages();
+    app.cart.clearMessages(select.cart.message);
   }
 
 

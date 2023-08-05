@@ -202,44 +202,7 @@
       }
     }
   ],
-  "orders": [
-    {
-      "address": "1212121",
-      "phone": "121212121",
-      "totalPrice": 47,
-      "subtotalPrice": 27,
-      "totalNumber": 3,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "cake",
-          "amount": 3,
-          "price": 27,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 1
-    },
-    {
-      "address": "1212121",
-      "phone": "121212121",
-      "totalPrice": 47,
-      "subtotalPrice": 27,
-      "totalNumber": 3,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "cake",
-          "amount": 3,
-          "price": 27,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 2
-    }
-  ],
+  "orders": [],
   "events": [
     {
       "id": 1,
@@ -312,6 +275,28 @@
       "starters": [
         "lemonWater"
       ]
+    },
+    {
+      "date": "2023-08-05",
+      "hour": "12:00",
+      "table": 2,
+      "duration": 1,
+      "ppl": 1,
+      "starters": [],
+      "phone": "",
+      "address": "",
+      "id": 100
+    },
+    {
+      "date": "2023-08-05",
+      "hour": "12:00",
+      "table": 1,
+      "duration": 1,
+      "ppl": 1,
+      "starters": [],
+      "phone": "",
+      "address": "",
+      "id": 101
     }
   ]
 }

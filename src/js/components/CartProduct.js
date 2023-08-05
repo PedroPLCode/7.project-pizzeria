@@ -59,13 +59,13 @@ class CartProduct {
 
     thisCartProduct.dom.edit.addEventListener('click', function(event) {
       event.preventDefault();
-      app.cart.clearMessages();
-      app.cart.printMessage(messages.editNotImplemented);
+      app.cart.clearMessages(select.cart.message);
+      app.cart.printMessage(messages.order.editNotImplemented, select.cart.message);
     });
 
     thisCartProduct.dom.remove.addEventListener('click', function(event) {
       event.preventDefault();
-      app.cart.clearMessages();
+      app.cart.clearMessages(select.cart.message);
       thisCartProduct.remove();
     });
   }

@@ -4,7 +4,7 @@ import {select, settings, classNames, messages} from '../settings.js';
 
 class API {
 
-  getData() {
+  getProductsData() {
     const url = settings.db.url + '/' + settings.db.products;
     fetch(url) 
     .then(function(rawResponse) {
@@ -52,7 +52,7 @@ class API {
         thisAPI.orderSentOK();
       })
       .catch((error) => {
-        thisAPI.handleError(error);
+        thisAPI.handleOrderError(error, messages.order.error.notSent);
       });
     } 
   } 
@@ -60,16 +60,72 @@ class API {
   orderSentOK() {
     const activeProduct = document.querySelector(select.all.menuProductsActive);
     activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
-    app.cart.clearMessages();
-    app.cart.printMessage(messages.confirmation);
+    app.cart.clearMessages(select.cart.message);
+    app.cart.printMessage(messages.order.confirmation, select.cart.message);
     app.cart.resetToDefault();
   }
 
-  handleError(errorCode) {
-    app.cart.clearMessages();
+  handleError(errorCode, message) {
+    app.cart.clearMessages(select.cart.message);
     messages.error.notSent.push(errorCode);
-    app.cart.printMessage(messages.error.notSent);
+    app.cart.printMessage(message, select.cart.message);
     messages.error.notSent.pop();
+  }
+
+  sentBooking() {
+    const thisAPI = this;
+    const url = settings.db.url + '/' + settings.db.bookings;
+
+    thisAPI.payload = {
+      date: app.booking.datePicker.value,
+      hour: app.booking.hourPicker.value,
+      table: parseInt(app.booking.selectedTable),
+      duration: app.booking.hoursAmountWidget.correctValue,
+      ppl: app.booking.peopleAmountWidget.correctValue,
+      starters: [],
+      phone: app.booking.dom.phone.value, //walidacja wymagana
+      address: app.booking.dom.address.value, //walidacja wymagana
+    };
+
+    for (let singleCheckbox of app.booking.dom.checkboxes) {
+      if (singleCheckbox.checked) {
+        thisAPI.payload.starters.push(singleCheckbox.value);
+      }
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(thisAPI.payload),
+    };
+
+    //if (app.cart.validate(thisAPI.payload)) {
+      fetch(url, options)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(parsedResponse) {
+        console.log('parsed response - sentOrder', parsedResponse);
+        app.booking.makeBooked(thisAPI.payload.date, thisAPI.payload.hour, thisAPI.payload.duration, thisAPI.payload.table);
+        thisAPI.BookingSentOK();
+      })
+      .catch((error) => {
+        thisAPI.handleError(error, messages.booking.notSent);
+      });
+    //} 
+  } 
+
+  BookingSentOK() {
+    const thisAPI = this;
+    app.booking.resetTables();
+    app.cart.clearMessages(select.cart.message);
+    messages.booking.sentOK.push('Table ' + thisAPI.payload.table);
+    messages.booking.sentOK.push('Date ' + thisAPI.payload.date);
+    messages.booking.sentOK.push('Time ' + thisAPI.payload.hour);
+    app.cart.printMessage(messages.booking.sentOK, select.cart.message);
+    messages.booking.sentOK = messages.booking.sentOK.slice(0, -3);
   }
 
   getBookingsAndEventsData(minDate, maxDate) {

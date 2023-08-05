@@ -33,7 +33,7 @@ export const app = {
         thisApp.activate(id);
 
         if (id == 'booking') {
-          thisApp.cart.clearMessages(); 
+          thisApp.cart.clearMessages(select.cart.message); 
           thisApp.cart.closeCart(); 
         }
 
@@ -104,7 +104,7 @@ export const app = {
     const thisApp = this;
     thisApp.data = {};
     thisApp.api = new API();
-    thisApp.api.getData();
+    thisApp.api.getProductsData();
   },
 
   initCart: function() {

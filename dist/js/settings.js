@@ -68,7 +68,13 @@ export const select = {
   booking: {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
+    floorPlan: '.floor-plan',
     tables: '.floor-plan .table',
+    dataTable: 'data-table',
+    bookingButton: '.order-confirmation button',
+    phone: '[name="phone"]',
+    address: '[name="address"]',
+    checkboxes: '.checkbox label input',
   },
   nav: {
     wrapper: '.main-nav',
@@ -88,8 +94,10 @@ export const classNames = {
     flashWhenUpdated: 'flash',
   },
   booking: {
+    singleTable: 'table',
     loading: 'loading',
     tableBooked: 'booked',
+    tableSelected: 'selected',
   },
   nav: {
     active: 'active',
@@ -102,14 +110,23 @@ export const classNames = {
 };
 
 export const messages = {
-  error: {
-    address: ['WARNING.', 'Please provide correct address.', 'At least 6 characters.'],
-    phone: ['WARNING.', 'Please provide correct number.', '9 digits.'],
-    cart: ['WARNING.', 'Cart looks empty.', 'Please put some products.'],
-    notSent: ['ERROR. ORDER NOT SENT.'],
+  order: {
+    error: {
+      address: ['WARNING.', 'Please provide correct address.', 'At least 6 characters.'],
+      phone: ['WARNING.', 'Please provide correct number.', '9 digits.'],
+      cart: ['WARNING.', 'Cart looks empty.', 'Please put some products.'],
+      notSent: ['ERROR. ORDER NOT SENT.'],
+    },
+    confirmation: ['ORDER CONFIRMATION.', 'Order sent successfully.', 'Please wait for delivery.'], 
+    editNotImplemented: ['Sorry', 'Function under construction.', 'Not implemented yet.'],
   },
-  confirmation: ['ORDER CONFIRMATION.', 'Order sent successfully.', 'Please wait for delivery.'], 
-  editNotImplemented: ['Sorry', 'Function under construction.', 'Not implemented yet.'],
+  booking: {
+    tableSelected: ['Table selected.'],
+    tableAlreadyBooked: ['Sorry', 'This table is already booked.'],
+    tableNotSelected: ['Table not selected.'],
+    sentOK: ['Booking confirmation', 'CONFIRMED.'],
+    notSent: ['ERROR', 'BOOKING NOT SENT.'],
+  }
 }
   
 export const settings = {

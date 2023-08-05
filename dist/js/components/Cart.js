@@ -55,21 +55,21 @@ class Cart {
 
     thisCart.dom.address.addEventListener('change', function() {
       thisCart.dom.address.classList.add(classNames.cart.wrapperError);
-      thisCart.clearMessages();
-      thisCart.printMessage(messages.error.address);
+      thisCart.clearMessages(select.cart.message);
+      thisCart.printMessage(messages.order.error.address, select.cart.message);
       if (thisCart.dom.address.value.length >= 6) {
         thisCart.dom.address.classList.remove(classNames.cart.wrapperError);
-        thisCart.clearMessages();
+        thisCart.clearMessages(select.cart.message);
       }
     });
 
     thisCart.dom.phone.addEventListener('change', function() {
       thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
-      thisCart.clearMessages();
-      thisCart.printMessage(messages.error.phone);
+      thisCart.clearMessages(select.cart.message);
+      thisCart.printMessage(messages.order.error.phone, select.cart.message);
       if (thisCart.dom.phone.value.length == 9) {
         thisCart.dom.phone.classList.remove(classNames.cart.wrapperError);
-        thisCart.clearMessages();
+        thisCart.clearMessages(select.cart.message);
       }
     });
   }
@@ -85,7 +85,7 @@ class Cart {
 
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
 
-    thisCart.clearMessages();
+    thisCart.clearMessages(select.cart.message);
     thisCart.update();
   }
 
@@ -131,46 +131,46 @@ class Cart {
   }
 
 
-  printMessage(msgs) {
+  printMessage(msgs, location) {
     for (let msg of msgs) {
       let div = document.createElement('div');
       div.innerHTML = msg;
-      document.querySelector(select.cart.message).appendChild(div);
+      document.querySelector(location).appendChild(div);
     }
   }
     
 
-  clearMessages() {
-    document.querySelector(select.cart.message).innerHTML = '';
+  clearMessages(location) {
+    document.querySelector(location).innerHTML = '';
   } 
   
 
   validate(payload) {
     const thisCart = this;
-    thisCart.clearMessages();
+    thisCart.clearMessages(select.cart.message);
 
     if (payload.products.length != 0) {
-      thisCart.clearMessages();
+      thisCart.clearMessages(select.cart.message);
       if (payload.phone.length == 9) {
         thisCart.dom.phone.classList.remove(classNames.cart.wrapperError);
-        thisCart.clearMessages();
+        thisCart.clearMessages(select.cart.message);
         if (payload.address.length >= 6) {
           thisCart.dom.address.classList.remove(classNames.cart.wrapperError);
-          thisCart.clearMessages();
+          thisCart.clearMessages(select.cart.message);
           return true;
         } else {
           thisCart.dom.address.classList.add(classNames.cart.wrapperError);
-          thisCart.clearMessages();
-          thisCart.printMessage(messages.error.address);
+          thisCart.clearMessages(select.cart.message);
+          thisCart.printMessage(messages.order.error.address);
         }
       } else {
-        thisCart.clearMessages();
-        thisCart.printMessage(messages.error.phone);
+        thisCart.clearMessages(select.cart.message);
+        thisCart.printMessage(messages.order.error.phone, select.cart.message);
         thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
       }
     } else {
-      thisCart.clearMessages();
-      thisCart.printMessage(messages.error.cart);
+      thisCart.clearMessages(select.cart.message);
+      thisCart.printMessage(messages.order.error.cart, select.cart.message);
     }
   }
 

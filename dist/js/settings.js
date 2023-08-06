@@ -111,23 +111,23 @@ export const classNames = {
 
 export const messages = {
   order: {
-    error: {
-      address: ['WARNING.', 'Please provide correct address.', 'At least 6 characters.'],
-      phone: ['WARNING.', 'Provide correct phone number.', '9 digits.'],
-      cart: ['WARNING.', 'Cart looks empty.', 'Please put some products.'],
-      notSent: ['ERROR. ORDER NOT SENT.'],
-    },
     confirmation: ['ORDER CONFIRMATION.', 'Order sent successfully.', 'Please wait for delivery.'], 
-    editNotImplemented: ['Sorry', 'Function under construction.', 'Not implemented yet.'],
   },
   booking: {
     tableSelected: ['Table selected.'],
-    tableAlreadyBooked: ['Sorry', 'This table is already booked.'],
     tableNotSelected: ['Table not selected.'],
-    sentOK: ['Booking confirmation', 'CONFIRMED.'],
-    notSent: ['ERROR', 'BOOKING NOT SENT.'],
-    errorTable: ['WARNING', 'Table not selected.', 'Please select table.'],
-  }
+    tableAlreadyBooked: ['Sorry', 'This table is already booked.'],
+    confirmation: ['Booking confirmation', 'CONFIRMED.'],
+  },
+  error: {
+    address: ['WARNING.', 'Please provide correct address.', 'At least 6 characters.'],
+    phone: ['WARNING.', 'Provide correct phone number.', '9 digits.'],
+    cart: ['WARNING.', 'Cart looks empty.', 'Please put some products.'],
+    table: ['WARNING', 'Table not selected.', 'Please select table.'],
+    orderNotSent: ['ERROR. ORDER NOT SENT.'],
+    bookingNotSent: ['ERROR', 'BOOKING NOT SENT.'],
+    editNotImplemented: ['Sorry', 'Function under construction.', 'Not implemented yet.'],
+  },
 }
   
 export const settings = {

@@ -53,7 +53,7 @@ class Cart {
 
     thisCart.dom.address.addEventListener('change', function() {
       app.api.validate(thisCart.dom.address.value.length >= 6, 
-                       messages.order.error.address, 
+                       messages.error.address, 
                        select.cart.message, 
                        thisCart.dom.address, 
                        classNames.cart.wrapperError);
@@ -61,7 +61,7 @@ class Cart {
 
     thisCart.dom.phone.addEventListener('change', function() {
       app.api.validate(thisCart.dom.phone.value.length == 9, 
-                       messages.order.error.phone, 
+                       messages.error.phone, 
                        select.cart.message, 
                        thisCart.dom.phone, 
                        classNames.cart.wrapperError);

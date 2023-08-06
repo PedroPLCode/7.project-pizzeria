@@ -60,7 +60,7 @@ class CartProduct {
     thisCartProduct.dom.edit.addEventListener('click', function(event) {
       event.preventDefault();
       app.cart.clearMessages(select.cart.message);
-      app.cart.printMessage(messages.order.editNotImplemented, select.cart.message);
+      app.cart.printMessage(messages.error.editNotImplemented, select.cart.message);
     });
 
     thisCartProduct.dom.remove.addEventListener('click', function(event) {

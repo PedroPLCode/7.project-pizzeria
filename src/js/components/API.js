@@ -63,15 +63,15 @@ class API {
     };
 
     const validationSuccesfull = thisAPI.validate(thisAPI.payload.products.length != 0, 
-                                                  messages.order.error.cart, 
+                                                  messages.error.cart, 
                                                   select.cart.message) &&
                                  thisAPI.validate(thisAPI.payload.phone.length == 9, 
-                                                  messages.order.error.phone, 
+                                                  messages.error.phone, 
                                                   select.cart.message, 
                                                   app.cart.dom.phone, 
                                                   classNames.cart.wrapperError) &&
                                  thisAPI.validate(thisAPI.payload.address.length >= 6, 
-                                                  messages.order.error.address, 
+                                                  messages.error.address, 
                                                   select.cart.message, 
                                                   app.cart.dom.address, 
                                                   classNames.cart.wrapperError);
@@ -83,15 +83,15 @@ class API {
       })
       .then(function(parsedResponse) {
         console.log('parsed response - sentOrder', parsedResponse);
-        thisAPI.orderSentOK();
+        thisAPI.handleOrderSent();
       })
       .catch((error) => {
-        thisAPI.handleOrderError(error, messages.order.error.notSent);
+        thisAPI.handleError(error, messages.error.orderNotSent);
       });
     } 
   } 
 
-  orderSentOK() {
+  handleOrderSent() {
     const activeProduct = document.querySelector(select.all.menuProductsActive);
     activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
     app.cart.clearMessages(select.cart.message);
@@ -101,9 +101,9 @@ class API {
 
   handleError(errorCode, message) {
     app.cart.clearMessages(select.cart.message);
-    messages.error.notSent.push(errorCode);
+    message.push(errorCode);
     app.cart.printMessage(message, select.cart.message);
-    messages.error.notSent.pop();
+    message.pop();
   }
 
   sentBooking() {
@@ -136,15 +136,15 @@ class API {
     };
 
     const validationSuccesfull = thisAPI.validate(thisAPI.payload.table, 
-                                                  messages.booking.errorTable, 
+                                                  messages.error.table, 
                                                   select.cart.message) &&
                                  thisAPI.validate(thisAPI.payload.phone.length == 9, 
-                                                  messages.order.error.phone, 
+                                                  messages.error.phone, 
                                                   select.cart.message, 
                                                   app.cart.dom.phone, 
                                                   classNames.cart.wrapperError) &&
                                  thisAPI.validate(thisAPI.payload.address.length >= 6, 
-                                                  messages.order.error.address, 
+                                                  messages.error.address, 
                                                   select.cart.message, 
                                                   app.cart.dom.address, 
                                                   classNames.cart.wrapperError);
@@ -157,22 +157,22 @@ class API {
       .then(function(parsedResponse) {
         console.log('parsed response - sentBooking', parsedResponse);
         app.booking.makeBooked(thisAPI.payload.date, thisAPI.payload.hour, thisAPI.payload.duration, thisAPI.payload.table);
-        thisAPI.BookingSentOK();
+        thisAPI.handleBookingSent();
       })
       .catch((error) => {
-        thisAPI.handleError(error, messages.booking.notSent);
+        thisAPI.handleError(error, messages.error.bookingNotSent);
       });
     } 
   } 
 
-  BookingSentOK() {
+  handleBookingSent() {
     const thisAPI = this;
     app.booking.resetTables();
     app.cart.clearMessages(select.cart.message);
-    messages.booking.sentOK.push('Table ' + thisAPI.payload.table + ' for ' + thisAPI.payload.ppl + ' persons');
-    messages.booking.sentOK.push('At ' + thisAPI.payload.date + ' ' + thisAPI.payload.hour);
-    app.cart.printMessage(messages.booking.sentOK, select.cart.message);
-    messages.booking.sentOK = messages.booking.sentOK.slice(0, -3);
+    messages.booking.confirmation.push('Table ' + thisAPI.payload.table + ' for ' + thisAPI.payload.ppl + ' persons');
+    messages.booking.confirmation.push('At ' + thisAPI.payload.date + ' ' + thisAPI.payload.hour);
+    app.cart.printMessage(messages.booking.confirmation, select.cart.message);
+    messages.booking.confirmation = messages.booking.confirmation.slice(0, -3);
   }
 
   getBookingsAndEventsData(minDate, maxDate) {

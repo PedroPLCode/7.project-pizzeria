@@ -70,7 +70,7 @@ class Booking {
 
     thisBooking.dom.address.addEventListener('change', function() {
       app.api.validate(thisBooking.dom.address.value.length >= 6, 
-                       messages.order.error.address, 
+                       messages.error.address, 
                        select.cart.message, 
                        thisBooking.dom.address, 
                        classNames.cart.wrapperError);
@@ -78,7 +78,7 @@ class Booking {
 
     thisBooking.dom.phone.addEventListener('change', function() {
       app.api.validate(thisBooking.dom.phone.value.length == 9, 
-                       messages.order.error.phone, 
+                       messages.error.phone, 
                        select.cart.message, 
                        thisBooking.dom.phone, 
                        classNames.cart.wrapperError);

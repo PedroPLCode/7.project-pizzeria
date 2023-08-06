@@ -113,7 +113,7 @@ export const messages = {
   order: {
     error: {
       address: ['WARNING.', 'Please provide correct address.', 'At least 6 characters.'],
-      phone: ['WARNING.', 'Please provide correct number.', '9 digits.'],
+      phone: ['WARNING.', 'Provide correct phone number.', '9 digits.'],
       cart: ['WARNING.', 'Cart looks empty.', 'Please put some products.'],
       notSent: ['ERROR. ORDER NOT SENT.'],
     },
@@ -126,6 +126,7 @@ export const messages = {
     tableNotSelected: ['Table not selected.'],
     sentOK: ['Booking confirmation', 'CONFIRMED.'],
     notSent: ['ERROR', 'BOOKING NOT SENT.'],
+    errorTable: ['WARNING', 'Table not selected.', 'Please select table.'],
   }
 }
   

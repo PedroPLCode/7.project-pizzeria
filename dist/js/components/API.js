@@ -16,6 +16,26 @@ class API {
     });
   }
 
+  validate(statementToCheck, msg, mgsLocation, inputFieldLocation = false, classToChange = false) {
+    if (inputFieldLocation) {
+      inputFieldLocation.classList.add(classToChange);
+      app.cart.clearMessages(mgsLocation);
+      app.cart.printMessage(msg, mgsLocation);
+      if (statementToCheck) {
+        inputFieldLocation.classList.remove(classToChange);
+        app.cart.clearMessages(select.cart.message);
+        return true;
+      } 
+    } else {
+      app.cart.clearMessages(mgsLocation);
+      app.cart.printMessage(msg, mgsLocation);
+      if (statementToCheck) {
+        app.cart.clearMessages(select.cart.message);
+        return true;
+      }
+    }
+  }
+
   sentOrder() {
     const thisAPI = this;
     const url = settings.db.url + '/' + settings.db.orders;
@@ -42,7 +62,21 @@ class API {
       body: JSON.stringify(thisAPI.payload),
     };
 
-    if (app.cart.validate(thisAPI.payload)) {
+    const validationSuccesfull = thisAPI.validate(thisAPI.payload.products.length != 0, 
+                                                  messages.order.error.cart, 
+                                                  select.cart.message) &&
+                                 thisAPI.validate(thisAPI.payload.phone.length == 9, 
+                                                  messages.order.error.phone, 
+                                                  select.cart.message, 
+                                                  app.cart.dom.phone, 
+                                                  classNames.cart.wrapperError) &&
+                                 thisAPI.validate(thisAPI.payload.address.length >= 6, 
+                                                  messages.order.error.address, 
+                                                  select.cart.message, 
+                                                  app.cart.dom.address, 
+                                                  classNames.cart.wrapperError);
+
+    if (validationSuccesfull) {
       fetch(url, options)
       .then(function(response) {
         return response.json();
@@ -83,8 +117,8 @@ class API {
       duration: app.booking.hoursAmountWidget.correctValue,
       ppl: app.booking.peopleAmountWidget.correctValue,
       starters: [],
-      phone: app.booking.dom.phone.value, //walidacja wymagana
-      address: app.booking.dom.address.value, //walidacja wymagana
+      phone: app.booking.dom.phone.value,
+      address: app.booking.dom.address.value,
     };
 
     for (let singleCheckbox of app.booking.dom.checkboxes) {
@@ -101,29 +135,42 @@ class API {
       body: JSON.stringify(thisAPI.payload),
     };
 
-    //if (app.cart.validate(thisAPI.payload)) {
+    const validationSuccesfull = thisAPI.validate(thisAPI.payload.table, 
+                                                  messages.booking.errorTable, 
+                                                  select.cart.message) &&
+                                 thisAPI.validate(thisAPI.payload.phone.length == 9, 
+                                                  messages.order.error.phone, 
+                                                  select.cart.message, 
+                                                  app.cart.dom.phone, 
+                                                  classNames.cart.wrapperError) &&
+                                 thisAPI.validate(thisAPI.payload.address.length >= 6, 
+                                                  messages.order.error.address, 
+                                                  select.cart.message, 
+                                                  app.cart.dom.address, 
+                                                  classNames.cart.wrapperError);
+
+    if (validationSuccesfull) {
       fetch(url, options)
       .then(function(response) {
         return response.json();
       })
       .then(function(parsedResponse) {
-        console.log('parsed response - sentOrder', parsedResponse);
+        console.log('parsed response - sentBooking', parsedResponse);
         app.booking.makeBooked(thisAPI.payload.date, thisAPI.payload.hour, thisAPI.payload.duration, thisAPI.payload.table);
         thisAPI.BookingSentOK();
       })
       .catch((error) => {
         thisAPI.handleError(error, messages.booking.notSent);
       });
-    //} 
+    } 
   } 
 
   BookingSentOK() {
     const thisAPI = this;
     app.booking.resetTables();
     app.cart.clearMessages(select.cart.message);
-    messages.booking.sentOK.push('Table ' + thisAPI.payload.table);
-    messages.booking.sentOK.push('Date ' + thisAPI.payload.date);
-    messages.booking.sentOK.push('Time ' + thisAPI.payload.hour);
+    messages.booking.sentOK.push('Table ' + thisAPI.payload.table + ' for ' + thisAPI.payload.ppl + ' persons');
+    messages.booking.sentOK.push('At ' + thisAPI.payload.date + ' ' + thisAPI.payload.hour);
     app.cart.printMessage(messages.booking.sentOK, select.cart.message);
     messages.booking.sentOK = messages.booking.sentOK.slice(0, -3);
   }

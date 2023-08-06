@@ -11,7 +11,6 @@ class Cart {
     thisCart.initActions();
   }
 
-
   getElements(element) {
     const thisCart = this;
 
@@ -29,7 +28,6 @@ class Cart {
       phone: element.querySelector(select.cart.phone),
     };
   }
-
 
   initActions() {
     const thisCart = this;
@@ -54,26 +52,21 @@ class Cart {
     });
 
     thisCart.dom.address.addEventListener('change', function() {
-      thisCart.dom.address.classList.add(classNames.cart.wrapperError);
-      thisCart.clearMessages(select.cart.message);
-      thisCart.printMessage(messages.order.error.address, select.cart.message);
-      if (thisCart.dom.address.value.length >= 6) {
-        thisCart.dom.address.classList.remove(classNames.cart.wrapperError);
-        thisCart.clearMessages(select.cart.message);
-      }
+      app.api.validate(thisCart.dom.address.value.length >= 6, 
+                       messages.order.error.address, 
+                       select.cart.message, 
+                       thisCart.dom.address, 
+                       classNames.cart.wrapperError);
     });
 
     thisCart.dom.phone.addEventListener('change', function() {
-      thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
-      thisCart.clearMessages(select.cart.message);
-      thisCart.printMessage(messages.order.error.phone, select.cart.message);
-      if (thisCart.dom.phone.value.length == 9) {
-        thisCart.dom.phone.classList.remove(classNames.cart.wrapperError);
-        thisCart.clearMessages(select.cart.message);
-      }
+      app.api.validate(thisCart.dom.phone.value.length == 9, 
+                       messages.order.error.phone, 
+                       select.cart.message, 
+                       thisCart.dom.phone, 
+                       classNames.cart.wrapperError);
     });
   }
-
 
   add(menuProduct) {
     const thisCart  = this;
@@ -88,7 +81,6 @@ class Cart {
     thisCart.clearMessages(select.cart.message);
     thisCart.update();
   }
-
 
   async update() {
     const thisCart  = this;
@@ -121,7 +113,6 @@ class Cart {
     app.flashElementUp(thisCart.dom.wrapper, classNames.cart.flashWhenUpdated);
   }
 
-
   remove(productToRemove) {
     const thisCart = this;
     productToRemove.dom.wrapper.remove();
@@ -129,7 +120,6 @@ class Cart {
     thisCart.products.splice(indexToRemove, 1);
     thisCart.update();
   }
-
 
   printMessage(msgs, location) {
     for (let msg of msgs) {
@@ -139,41 +129,9 @@ class Cart {
     }
   }
     
-
   clearMessages(location) {
     document.querySelector(location).innerHTML = '';
   } 
-  
-
-  validate(payload) {
-    const thisCart = this;
-    thisCart.clearMessages(select.cart.message);
-
-    if (payload.products.length != 0) {
-      thisCart.clearMessages(select.cart.message);
-      if (payload.phone.length == 9) {
-        thisCart.dom.phone.classList.remove(classNames.cart.wrapperError);
-        thisCart.clearMessages(select.cart.message);
-        if (payload.address.length >= 6) {
-          thisCart.dom.address.classList.remove(classNames.cart.wrapperError);
-          thisCart.clearMessages(select.cart.message);
-          return true;
-        } else {
-          thisCart.dom.address.classList.add(classNames.cart.wrapperError);
-          thisCart.clearMessages(select.cart.message);
-          thisCart.printMessage(messages.order.error.address);
-        }
-      } else {
-        thisCart.clearMessages(select.cart.message);
-        thisCart.printMessage(messages.order.error.phone, select.cart.message);
-        thisCart.dom.phone.classList.add(classNames.cart.wrapperError);
-      }
-    } else {
-      thisCart.clearMessages(select.cart.message);
-      thisCart.printMessage(messages.order.error.cart, select.cart.message);
-    }
-  }
-
 
   resetToDefault() {
     const thisCart = this;
@@ -183,7 +141,6 @@ class Cart {
     thisCart.products = [];
     thisCart.update();
   } 
-
 
   closeCart(){
     const thisCart = this;

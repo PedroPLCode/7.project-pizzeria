@@ -31,11 +31,8 @@ export const app = {
 
         const id = clickedElement.getAttribute('href').replace('#', '');
         thisApp.activate(id);
-
-        if (id == 'booking') {
-          thisApp.cart.clearMessages(select.cart.message); 
-          thisApp.cart.closeCart(); 
-        }
+        thisApp.cart.clearMessages(select.cart.message); 
+        thisApp.cart.closeCart(); 
 
         window.location.hash = '#/' + id;
       })

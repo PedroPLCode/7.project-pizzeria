@@ -118,7 +118,7 @@ class API {
       ppl: app.booking.peopleAmountWidget.correctValue,
       starters: [],
       phone: app.booking.dom.phone.value,
-      address: app.booking.dom.address.value,
+      email: app.booking.dom.email.value,
     };
 
     for (let singleCheckbox of app.booking.dom.checkboxes) {
@@ -143,10 +143,11 @@ class API {
                                                   select.cart.message, 
                                                   app.cart.dom.phone, 
                                                   classNames.cart.wrapperError) &&
-                                 thisAPI.validate(thisAPI.payload.address.length >= 6, 
-                                                  messages.error.address, 
+                                 thisAPI.validate(thisAPI.payload.email.value.includes('@') && 
+                                                  thisAPI.payload.email.value.includes('.'), 
+                                                  messages.error.email, 
                                                   select.cart.message, 
-                                                  app.cart.dom.address, 
+                                                  app.cart.dom.email, 
                                                   classNames.cart.wrapperError);
 
     if (validationSuccesfull) {

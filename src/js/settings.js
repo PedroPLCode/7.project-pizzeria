@@ -73,7 +73,7 @@ export const select = {
     dataTable: 'data-table',
     bookingButton: '.order-confirmation button',
     phone: '[name="phone"]',
-    address: '[name="address"]',
+    email: '[name="email"]',
     checkboxes: '.checkbox label input',
   },
   nav: {
@@ -123,6 +123,7 @@ export const messages = {
   },
   error: {
     address: ['WARNING.', 'Please provide correct address.', 'At least 6 characters.'],
+    email: ['WARNING.', 'Please provide correct email.', 'Including @ and dot.'],
     phone: ['WARNING.', 'Provide correct phone number.', '9 digits.'],
     cart: ['WARNING.', 'Cart looks empty.', 'Please put some products.'],
     table: ['WARNING', 'Table not selected.', 'Please select table.'],

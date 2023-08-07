@@ -32,7 +32,7 @@ class Booking {
       floorPlan: element.querySelector(select.booking.floorPlan),
       tables: element.querySelectorAll(select.booking.tables),
       bookingButton: element.querySelector(select.booking.bookingButton),
-      address: element.querySelector(select.booking.address),
+      email: element.querySelector(select.booking.email),
       phone: element.querySelector(select.booking.phone),
       checkboxes: element.querySelectorAll(select.booking.checkboxes),
     };
@@ -78,11 +78,12 @@ class Booking {
       app.api.sentBooking();
     })
 
-    thisBooking.dom.address.addEventListener('change', function() {
-      app.api.validate(thisBooking.dom.address.value.length >= 6, 
-                       messages.error.address, 
+    thisBooking.dom.email.addEventListener('change', function() {
+      app.api.validate(thisBooking.dom.email.value.includes('@') && 
+                      thisBooking.dom.email.value.includes('.'), 
+                       messages.error.email, 
                        select.cart.message, 
-                       thisBooking.dom.address, 
+                       thisBooking.dom.email, 
                        classNames.cart.wrapperError);
     })
 

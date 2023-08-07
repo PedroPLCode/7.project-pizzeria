@@ -54,9 +54,19 @@ class Booking {
       event.preventDefault();
     });
 
-    thisBooking.dom.wrapper.addEventListener('updated', function() {
-      thisBooking.resetTables(); //dlaczego resetują się gdy zmieniam peoples albo hours?
+    thisBooking.dom.wrapper.addEventListener('updated', function(event) {
       thisBooking.updateDOM();
+      if (thisBooking.selectedTable) {
+        if (event.target == thisBooking.dom.hourPicker) {
+          thisBooking.resetTables();
+          app.cart.clearMessages(select.cart.message);
+          app.cart.printMessage(messages.booking.timeChanged, select.cart.message);
+        } else if (event.target == thisBooking.dom.datePicker) {
+          thisBooking.resetTables();
+          app.cart.clearMessages(select.cart.message);
+          app.cart.printMessage(messages.booking.dateChanged, select.cart.message); 
+        }
+      }
     })
 
     thisBooking.dom.floorPlan.addEventListener('click', function(event) {

@@ -117,6 +117,8 @@ export const messages = {
     tableSelected: ['Table selected.'],
     tableNotSelected: ['Table not selected.'],
     tableAlreadyBooked: ['Sorry', 'This table is already booked.'],
+    dateChanged: ['Date changed.', 'Table selection reset.'],
+    timeChanged: ['Time changed.', 'Table selection reset.'],
     confirmation: ['Booking confirmation', 'CONFIRMED.'],
   },
   error: {

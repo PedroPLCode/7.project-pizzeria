@@ -202,44 +202,7 @@
       }
     }
   ],
-  "orders": [
-    {
-      "address": "56565656",
-      "phone": "666666666",
-      "totalPrice": 38,
-      "subtotalPrice": 18,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "cake",
-          "amount": 2,
-          "price": 18,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 1
-    },
-    {
-      "address": "56565656",
-      "phone": "666666666",
-      "totalPrice": 38,
-      "subtotalPrice": 18,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "cake",
-          "amount": 2,
-          "price": 18,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 2
-    }
-  ],
+  "orders": [],
   "events": [
     {
       "id": 1,
@@ -314,28 +277,15 @@
       ]
     },
     {
-      "date": "2023-08-06",
-      "hour": "12:00",
+      "date": "2023-08-11",
+      "hour": "16:30",
       "table": 1,
-      "duration": 1,
-      "ppl": 2,
-      "starters": [
-        "bread"
-      ],
-      "phone": "565656565",
-      "address": "6556565",
-      "id": 100
-    },
-    {
-      "date": "2023-08-06",
-      "hour": "12:00",
-      "table": 1,
-      "duration": 1,
-      "ppl": 2,
+      "duration": 5,
+      "ppl": 4,
       "starters": [],
-      "phone": "565656565",
-      "address": "6556565",
-      "id": 101
+      "phone": "121212121",
+      "address": "12121212",
+      "id": 100
     }
   ]
 }

@@ -202,7 +202,40 @@
       }
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "address": "112121",
+      "phone": "121212121",
+      "totalPrice": 40,
+      "subtotalPrice": 20,
+      "totalNumber": 1,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "name": "pizza",
+          "amount": 1,
+          "price": 20,
+          "priceSingle": 20,
+          "params": {
+            "sauce": [
+              "tomato"
+            ],
+            "toppings": [
+              "olives",
+              "redPeppers",
+              "greenPeppers",
+              "mushrooms",
+              "basil"
+            ],
+            "crust": [
+              "standard"
+            ]
+          }
+        }
+      ],
+      "id": 1
+    }
+  ],
   "events": [
     {
       "id": 1,
@@ -284,7 +317,7 @@
       "ppl": 1,
       "starters": [],
       "phone": "121212121",
-      "address": "1212112121",
+      "email": "12121@asd.pl",
       "id": 100
     }
   ]

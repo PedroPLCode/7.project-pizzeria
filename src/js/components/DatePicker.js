@@ -8,6 +8,7 @@ class DatePicker extends BaseWidget{
     const thisWidget = this;
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
+    thisWidget.dom.calendarLocation = document.querySelector(select.booking.floorPlan),
     thisWidget.initPlugin();
   }
   initPlugin(){
@@ -17,9 +18,14 @@ class DatePicker extends BaseWidget{
     thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
     // eslint-disable-next-line no-undef
     flatpickr(thisWidget.dom.input, {
-      defaultDate: thisWidget.minDate,
+      defaultDate: utils.addDays(thisWidget.minDate, 1),
       minDate: thisWidget.minDate,
       maxDate: thisWidget.maxDate,
+      altInput: true,
+      altFormat: "F j, Y",
+      dateFormat: "Y-m-d",
+      position: "above left",
+      positionElement: thisWidget.dom.calendarLocation,
       locale: {
         firstDayOfWeek: 1
       },

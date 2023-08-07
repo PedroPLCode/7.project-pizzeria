@@ -143,8 +143,8 @@ class API {
                                                   select.cart.message, 
                                                   app.cart.dom.phone, 
                                                   classNames.cart.wrapperError) &&
-                                 thisAPI.validate(thisAPI.payload.email.value.includes('@') && 
-                                                  thisAPI.payload.email.value.includes('.'), 
+                                 thisAPI.validate(thisAPI.payload.email.includes('@') && 
+                                                  thisAPI.payload.email.includes('.'), 
                                                   messages.error.email, 
                                                   select.cart.message, 
                                                   app.cart.dom.email, 

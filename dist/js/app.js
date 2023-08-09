@@ -3,41 +3,41 @@ import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import API from './components/API.js';
 import Booking from './components/Booking.js';
+import HomePage from './components/HomePage.js';
   
 export const app = {
   initPages: function() {
-    const thisApp = this;
-
-    thisApp.pages = document.querySelector(select.containerOf.pages).children;
-    thisApp.navLinks = document.querySelectorAll(select.nav.links)
+    this.pages = document.querySelector(select.containerOf.pages).children;
+    this.navLinks = document.querySelectorAll(select.nav.links)
 
     const idFromHash = window.location.hash.replace('#/', '');
 
-    let pageMathingHash = thisApp.pages[0].id;
+    let pageMathingHash = this.pages[0].id;
 
-    for (let page of thisApp.pages) {
+    for (let page of this.pages) {
       if (page.id == idFromHash) {
         pageMathingHash = page.id;
         break;
       }
     }
+    app.activate(pageMathingHash);
 
-    thisApp.activate(pageMathingHash);
-
-    for (let link of thisApp.navLinks) {
+    for (let link of this.navLinks) {
       link.addEventListener('click', function(event) {
         const clickedElement = this;
         event.preventDefault();
-
         const id = clickedElement.getAttribute('href').replace('#', '');
-        thisApp.activate(id);
-        thisApp.cart.clearMessages(select.cart.message); 
-        thisApp.cart.closeCart(); 
-
-        window.location.hash = '#/' + id;
+        app.handleLinkClicked(id);
       })
     }
   }, 
+
+  handleLinkClicked(id) {
+    app.activate(id);
+    app.cart.clearMessages(select.cart.message); 
+    app.cart.closeCart(); 
+    window.location.hash = '#/' + id;
+  },
 
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -52,84 +52,76 @@ export const app = {
   },
 
   async activatePage(pageId) {
-    const thisApp = this;
-    
     const pagesToReload = document.querySelector(select.pages.wrapper);
-    thisApp.flashElementDown(pagesToReload, classNames.pages.flashWhenUpdated);
-    await thisApp.sleep(select.pages.delayTime);
+    app.flashElementDown(pagesToReload, classNames.pages.flashWhenUpdated);
+    await app.sleep(select.pages.delayTime);
 
-    for (let page of thisApp.pages) {
+    for (let page of this.pages) {
       page.classList.toggle(
         classNames.pages.active, 
         page.id == pageId
         );
     }
-    thisApp.flashElementUp(pagesToReload, classNames.pages.flashWhenUpdated);
+    app.flashElementUp(pagesToReload, classNames.pages.flashWhenUpdated);
   },
 
   async activateLinks(pageId) {
-    const thisApp = this;
-
     const linksToReload = document.querySelector(select.nav.wrapper);
-    thisApp.flashElementDown(linksToReload, classNames.nav.flashWhenUpdated);
-    await thisApp.sleep(select.nav.delayTime);
+    app.flashElementDown(linksToReload, classNames.nav.flashWhenUpdated);
+    await app.sleep(select.nav.delayTime);
 
-    for (let link of thisApp.navLinks) {
+    for (let link of this.navLinks) {
       link.classList.toggle(
         classNames.nav.active, 
         link.getAttribute('href') == '#' + pageId
        );
     }
-    thisApp.flashElementUp(linksToReload, classNames.nav.flashWhenUpdated);
+    app.flashElementUp(linksToReload, classNames.nav.flashWhenUpdated);
   },
 
   activate: function(pageId) {
-    const thisApp = this;
-    thisApp.activatePage(pageId);
-    thisApp.activateLinks(pageId);
+    app.activatePage(pageId);
+    app.activateLinks(pageId);
   },
 
   initMenu: function() {
-    const thisApp = this;
-
-    for (let productData in thisApp.data.products) {
-      new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
+    for (let productData in this.data.products) {
+      new Product(this.data.products[productData].id, this.data.products[productData]);
     }
   },
 
   initData: function() {
-    const thisApp = this;
-    thisApp.data = {};
-    thisApp.api = new API();
-    thisApp.api.getProductsData();
+    this.data = {};
+    this.api = new API();
+    app.api.getProductsData();
   },
 
   initCart: function() {
-    const thisApp = this;
-
     const cartElem = document.querySelector(select.containerOf.cart);
-    thisApp.cart = new Cart(cartElem);
+    this.cart = new Cart(cartElem);
 
-    thisApp.productList = document.querySelector(select.containerOf.menu);
-    thisApp.productList.addEventListener('add-to-cart', function(event) {
+    this.productList = document.querySelector(select.containerOf.menu);
+    this.productList.addEventListener('add-to-cart', function(event) {
       app.cart.add(event.detail.product);
     });
   },
 
   initBooking: function() {
-    const thisApp = this;
+    this.bookingWidgetElement = document.querySelector(select.containerOf.booking);
+    this.booking = new Booking(this.bookingWidgetElement);
+  },
 
-    thisApp.bookingWidgetElement = document.querySelector(select.containerOf.booking);
-    thisApp.booking = new Booking(thisApp.bookingWidgetElement);
+  initHomePage: function() {
+    this.homePageElement = document.querySelector(select.containerOf.homePage);
+    this.homePage = new HomePage(this.homePageElement);
   },
 
   init: function(){
-    const thisApp = this;
-
-    thisApp.initPages();
-    thisApp.initData();
-    thisApp.initCart();
-    thisApp.initBooking();
+    app.initPages();
+    app.initData();
+    app.initCart();
+    app.initHomePage();
+    app.initBooking();
   },
 };
 

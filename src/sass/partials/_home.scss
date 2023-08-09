@@ -1,0 +1,221 @@
+.home-wrapper {
+  margin: (162px + $base-size)  auto ($base-size * 1.5) auto;
+  padding: ($base-size * 1) ($base-size * 4) ($base-size * 3) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
+}
+  
+.first-section-wrapper {
+  margin: ($base-size * 3) 0px ($base-size * 6) 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  div {
+    height: 96px;
+    color: $color-light;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+
+    h2 {
+      font-family: $font-header;
+      margin: 0px;
+      transition: $transition;
+    }
+
+    p {
+      font-family: $font-text;
+      margin: 0px;
+      transition: 1s all;
+    }
+  }
+
+  div:first-of-type {
+    background-image: url('../images/pizza-1.jpg');
+    background-position: center;
+    width: 49%;
+
+    h2 {
+      transform: translateY(12px);
+    }
+
+    p {
+      opacity: 0;
+      transform: translateY(36px);
+    }
+  }
+
+  div:first-of-type:hover {
+    cursor: pointer;
+  }
+
+  div:first-of-type:hover h2 {
+    transform: translateY(0px);
+  }
+
+  div:first-of-type:hover p {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  div:nth-of-type(2) {
+    background-image: url('../images/pizza-2.jpg');
+    background-position: center;
+    width: 49%;
+
+    h2 {
+      transform: translateY(12px);
+    }
+
+    p {
+      transform: translateY(36px);
+      opacity: 0;
+    }
+  }
+
+  div:nth-of-type(2):hover {
+    cursor: pointer;
+  }
+
+  div:nth-of-type(2):hover h2 {
+    transform: translateY(0px);
+  }
+
+  div:nth-of-type(2):hover p {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  div:last-of-type {
+    background-color: $color-main;
+    width: 100%;
+  }
+
+  div:last-of-type:hover {
+    cursor: default;
+  }
+}
+
+.main-carousel {
+
+  .carousel-cell {
+    margin: 0px auto;
+    padding: 0px;
+    width: 100%;
+    height: 198px;
+    display: flex;
+    flex-direction: row;
+    gap: ($base-size);
+    justify-content: center;
+    align-items: center;
+
+    .image {
+    margin: 0px;
+    width: 194px;
+    height: 194px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .description {
+      margin: 0px;
+      width: 396px;
+      height: 194px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      p:first-of-type {
+        font-size: ($base-size * 1.2);
+        font-weight: bold;
+      }
+
+      p:last-of-type {
+        font-style: italic;
+      }
+    }
+  }
+}
+
+.gallery {
+  margin-top: ($base-size * 6);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .gallery-image {
+    width: 194px;
+    height: 194px;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      transition: $transition;
+    }
+
+    ul {
+      transform: translateY(-117px);
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: $transition;
+
+      li {
+
+        a {
+          font-size: 0px;
+
+          i {
+            font-size: 26px;
+            color: $color-light;
+            transition: $transition;
+          }
+
+          i:hover {
+            cursor: pointer;
+            color: $color-main;
+          }
+        }
+      }
+    }
+  }
+
+  .gallery-image:hover img {
+    filter: brightness(50%);
+  }
+
+  .gallery-image:hover ul {
+      opacity: 1;
+    }
+
+  .footer {
+    width: 100%;
+    padding-top: ($base-size * 2);
+    display: flex;
+    flex-direction: row ;
+    align-items: space-between;
+  }
+    a {
+      width: 50%;
+      color: $color-main;
+    }
+
+    a:last-of-type {
+      text-align: right;
+    }
+}

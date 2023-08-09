@@ -5,51 +5,44 @@ import BaseWidget from './BaseWidget.js';
 class AmountWidget extends BaseWidget {
   constructor (element) {
     super(element, settings.amountWidget.defaultValue);
-    const thisWidget = this;
-    thisWidget.getElements(element);
-    thisWidget.initActions();
-    thisWidget.value = settings.amountWidget.defaultValue;
+    this.getElements(element);
+    this.initActions();
+    this.value = settings.amountWidget.defaultValue;
   }
-
 
   getElements(element){
-    const thisWidget = this;
-    thisWidget.dom = {
+    this.dom = {
       wrapper: element,
-      input: thisWidget.dom.wrapper.querySelector(select.widgets.amount.input),
-      linkDecrease: thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease),
-      linkIncrease: thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease),
+      input: this.dom.wrapper.querySelector(select.widgets.amount.input),
+      linkDecrease: this.dom.wrapper.querySelector(select.widgets.amount.linkDecrease),
+      linkIncrease: this.dom.wrapper.querySelector(select.widgets.amount.linkIncrease),
     };
   }
-
 
   initActions() {
     const thisWidget = this;
 
-    thisWidget.dom.input.addEventListener('change', function(){
+    this.dom.input.addEventListener('change', function(){
       app.cart.clearMessages(select.cart.message);
       thisWidget.value = thisWidget.dom.input.value;
     });
 
-    thisWidget.dom.linkDecrease.addEventListener('click', function(value) {
+    this.dom.linkDecrease.addEventListener('click', function(value) {
       value.preventDefault();
       app.cart.clearMessages(select.cart.message);
       thisWidget.setValue(thisWidget.value - 1);
     });
 
-    thisWidget.dom.linkIncrease.addEventListener('click', function(value) {
+    this.dom.linkIncrease.addEventListener('click', function(value) {
       value.preventDefault();
       app.cart.clearMessages(select.cart.message);
       thisWidget.setValue(thisWidget.value + 1);
     });
   }
 
-
   renderValue() {
-    const thisWidget = this;
-    thisWidget.dom.input.value = thisWidget.value;
+    this.dom.input.value = this.value;
   }
-
 
   isValid(value) {
     return !isNaN(value) && 

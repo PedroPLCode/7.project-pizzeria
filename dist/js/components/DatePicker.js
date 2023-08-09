@@ -1,31 +1,28 @@
 import BaseWidget from '../components/BaseWidget.js';
 import {utils} from '../utils.js';
+import {app} from '../app.js';
 import {select, settings} from '../settings.js';
 
 class DatePicker extends BaseWidget{
   constructor(wrapper){
     super(wrapper, utils.dateToStr(new Date()));
-    const thisWidget = this;
-
-    thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
-    thisWidget.dom.calendarLocation = document.querySelector(select.booking.floorPlan),
-    thisWidget.initPlugin();
+    this.dom.input = this.dom.wrapper.querySelector(select.widgets.datePicker.input);
+    this.dom.calendarLocation = document.querySelector(select.booking.floorPlan),
+    this.initPlugin();
   }
   initPlugin(){
-    const thisWidget = this;
-
-    thisWidget.minDate = new Date();
-    thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
+    this.minDate = new Date();
+    this.maxDate = utils.addDays(this.minDate, settings.datePicker.maxDaysInFuture);
     // eslint-disable-next-line no-undef
-    flatpickr(thisWidget.dom.input, {
-      defaultDate: utils.addDays(thisWidget.minDate, 1),
-      minDate: thisWidget.minDate,
-      maxDate: thisWidget.maxDate,
+    flatpickr(this.dom.input, {
+      defaultDate: this.minDate,
+      minDate: this.minDate,
+      maxDate: this.maxDate,
       altInput: true,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
       position: "above left",
-      positionElement: thisWidget.dom.calendarLocation,
+      positionElement: this.dom.calendarLocation,
       locale: {
         firstDayOfWeek: 1
       },
@@ -35,11 +32,11 @@ class DatePicker extends BaseWidget{
         }
       ],
       onChange: function(selectedDates, dateStr) {
-        thisWidget.value = dateStr;
-        //tutaj dodać jakieś komunikaty dla uzytkownika.
+        app.booking.datePicker.value = dateStr;
       },
     });
   }
+  
   parseValue(value){
     return value;
   }

@@ -1,0 +1,20 @@
+#pages {
+  > * {
+    display: none;
+  }
+
+  > .active {
+    display: block;
+  }
+}
+
+.pages {
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.2s all;
+
+  &.flash {
+    transform: scale(0.98);
+    opacity: 0.1;
+  }
+}

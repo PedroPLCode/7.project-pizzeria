@@ -5,16 +5,13 @@ import CartProduct from './CartProduct.js';
 
 class Cart {
   constructor(element) {
-    const thisCart = this;
-    thisCart.products = [];
-    thisCart.getElements(element);
-    thisCart.initActions();
+    this.products = [];
+    this.getElements(element);
+    this.initActions();
   }
 
   getElements(element) {
-    const thisCart = this;
-
-    thisCart.dom = {
+    this.dom = {
       wrapper: element,
       toggleTrigger: element.querySelector(select.cart.toggleTrigger),
       content: element.querySelector(select.cart.content),
@@ -30,95 +27,88 @@ class Cart {
   }
 
   initActions() {
-    const thisCart = this;
-
-    thisCart.dom.toggleTrigger.addEventListener('click', function(event) {
+    this.dom.toggleTrigger.addEventListener('click', function(event) {
       event.preventDefault();
         
-      thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      app.cart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
     });
 
-    thisCart.dom.productList.addEventListener('updated', function() {
-      thisCart.update();
+    this.dom.productList.addEventListener('updated', function() {
+      app.cart.update();
     });
 
-    thisCart.dom.productList.addEventListener('remove', function(event) {
-      thisCart.remove(event.detail.cartProduct);
+    this.dom.productList.addEventListener('remove', function(event) {
+      app.cart.remove(event.detail.cartProduct);
     });
 
-    thisCart.dom.form.addEventListener('submit', function(event) {
+    this.dom.form.addEventListener('submit', function(event) {
       event.preventDefault();
       app.api.sentOrder();
     });
 
-    thisCart.dom.address.addEventListener('change', function() {
-      app.api.validate(thisCart.dom.address.value.length >= 6, 
+    this.dom.address.addEventListener('change', function() {
+      app.api.validate(app.cart.dom.address.value.length >= 6, 
                        messages.error.address, 
                        select.cart.message, 
-                       thisCart.dom.address, 
+                       app.cart.dom.address, 
                        classNames.cart.wrapperError);
     });
 
-    thisCart.dom.phone.addEventListener('change', function() {
-      app.api.validate(thisCart.dom.phone.value.length == 9, 
+    this.dom.phone.addEventListener('change', function() {
+      app.api.validate(app.cart.dom.phone.value.length == 9, 
                        messages.error.phone, 
                        select.cart.message, 
-                       thisCart.dom.phone, 
+                       app.cart.dom.phone, 
                        classNames.cart.wrapperError);
     });
   }
 
   add(menuProduct) {
-    const thisCart  = this;
-
     const generatedHTML = templates.cartProduct(menuProduct);
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
     const cartContainer = document.querySelector(select.cart.productList);
     cartContainer.appendChild(generatedDOM);
 
-    thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+    this.products.push(new CartProduct(menuProduct, generatedDOM));
 
-    thisCart.clearMessages(select.cart.message);
-    thisCart.update();
+    this.clearMessages(select.cart.message);
+    this.update();
   }
 
   async update() {
-    const thisCart  = this;
+    this.deliveryFee = settings.cart.defaultDeliveryFee;
+    this.totalNumber = 0;
+    this.subtotalPrice = 0;
 
-    thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
-    thisCart.totalNumber = 0;
-    thisCart.subtotalPrice = 0;
-
-    for (let singleProduct of thisCart.products) {
-      thisCart.totalNumber += singleProduct.amount;
-      thisCart.subtotalPrice += singleProduct.price;
+    for (let singleProduct of this.products) {
+      this.totalNumber += singleProduct.amount;
+      this.subtotalPrice += singleProduct.price;
     }
 
-    if (!thisCart.products.length) {
-      thisCart.deliveryFee = 0;
+    if (!this.products.length) {
+      this.deliveryFee = 0;
     }
 
-    thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+    this.totalPrice = this.subtotalPrice + this.deliveryFee;
 
-    app.flashElementDown(thisCart.dom.wrapper, classNames.cart.flashWhenUpdated);
+    app.flashElementDown(this.dom.wrapper, classNames.cart.flashWhenUpdated);
     await app.sleep(select.cart.delayTime);
 
-    thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
-    thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
-    thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
+    this.dom.deliveryFee.innerHTML = this.deliveryFee;
+    this.dom.totalNumber.innerHTML = this.totalNumber;
+    this.dom.subtotalPrice.innerHTML = this.subtotalPrice;
 
-    for (let singleTotalPrice of thisCart.dom.totalPrice) {
-      singleTotalPrice.innerHTML = thisCart.totalPrice;
+    for (let singleTotalPrice of this.dom.totalPrice) {
+      singleTotalPrice.innerHTML = this.totalPrice;
     }
-    app.flashElementUp(thisCart.dom.wrapper, classNames.cart.flashWhenUpdated);
+    app.flashElementUp(this.dom.wrapper, classNames.cart.flashWhenUpdated);
   }
 
   remove(productToRemove) {
-    const thisCart = this;
     productToRemove.dom.wrapper.remove();
-    const indexToRemove = thisCart.products.indexOf(productToRemove);
-    thisCart.products.splice(indexToRemove, 1);
-    thisCart.update();
+    const indexToRemove = this.products.indexOf(productToRemove);
+    this.products.splice(indexToRemove, 1);
+    this.update();
   }
 
   printMessage(msgs, location) {
@@ -134,17 +124,15 @@ class Cart {
   } 
 
   resetToDefault() {
-    const thisCart = this;
-    for (let singleProduct of thisCart.products) {
+    for (let singleProduct of this.products) {
       singleProduct.dom.wrapper.remove();
     }
-    thisCart.products = [];
-    thisCart.update();
+    this.products = [];
+    this.update();
   } 
 
   closeCart(){
-    const thisCart = this;
-    thisCart.dom.wrapper.classList.remove(classNames.cart.wrapperActive);
+    this.dom.wrapper.classList.remove(classNames.cart.wrapperActive);
   }
 }
 

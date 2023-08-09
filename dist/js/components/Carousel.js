@@ -20,7 +20,8 @@ class Carousel {
       groupCells: '1',
     };
     // eslint-disable-next-line no-undef
-    new Flickity(this.dom.carouselElement, options);
+    const carousel = new Flickity(this.dom.carouselElement, options);
+    console.log(carousel);
   }
 }
 

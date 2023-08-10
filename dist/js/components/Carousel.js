@@ -22,7 +22,7 @@ class Carousel {
       groupCells: '1',
     };
     // eslint-disable-next-line no-undef
-    new Flickity(this.dom.carouselElement, options);
+    this.flickity = new Flickity(this.dom.carouselElement, options);
   }
 }
 

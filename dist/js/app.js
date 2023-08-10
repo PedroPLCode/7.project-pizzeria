@@ -62,6 +62,11 @@ export const app = {
         page.id == pageId
         );
     }
+
+    if (app.homePage.carousel.flickity) {
+      app.homePage.carousel.flickity.destroy();
+      app.homePage.carousel.initPlugin();
+    }
     app.flashElementUp(pagesToReload, classNames.pages.flashWhenUpdated);
   },
 
@@ -118,10 +123,10 @@ export const app = {
   },
 
   init: function(){
+    app.initHomePage();
     app.initPages();
     app.initData();
     app.initCart();
-    app.initHomePage();
     app.initBooking();
   },
 };

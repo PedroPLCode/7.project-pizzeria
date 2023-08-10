@@ -8,7 +8,7 @@ class HomePage {
     this.render(element);
     this.getElements(element);
     this.initActions();
-    this.initCarousel(this.dom.carouselElement);
+    this.initCarousel();
   }
 
   render(element) {
@@ -42,8 +42,8 @@ class HomePage {
     })
   }
 
-  initCarousel(carouselElement) {
-    new Carousel(carouselElement);
+  initCarousel() {
+    this.carousel = new Carousel(this.dom.carouselElement);
   }
 }
 

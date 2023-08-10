@@ -24,7 +24,7 @@ export const app = {
 
     for (let link of this.navLinks) {
       link.addEventListener('click', event => {
-        const clickedElement = this;
+        const clickedElement = link;
         event.preventDefault();
         const id = clickedElement.getAttribute('href').replace('#', '');
         app.handleLinkClicked(id);

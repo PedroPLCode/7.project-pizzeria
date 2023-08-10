@@ -1,1 +1,1 @@
-7project-pizzeria.pedroplcode.repl.co
+https://7project-pizzeria--pedroplcode.repl.co/

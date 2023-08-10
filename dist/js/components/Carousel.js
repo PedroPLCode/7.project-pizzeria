@@ -1,7 +1,9 @@
 class Carousel {
   constructor(element) { 
-    this.getElements(element)
-    this.initPlugin();
+    this.getElements(element);
+    setTimeout(() => {
+      this.initPlugin();
+    }, 500);
   }
 
   getElements(element) {
@@ -20,8 +22,7 @@ class Carousel {
       groupCells: '1',
     };
     // eslint-disable-next-line no-undef
-    const carousel = new Flickity(this.dom.carouselElement, options);
-    console.log(carousel);
+    new Flickity(this.dom.carouselElement, options);
   }
 }
 

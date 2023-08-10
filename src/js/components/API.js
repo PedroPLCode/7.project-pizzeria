@@ -5,7 +5,7 @@ import {select, settings, classNames, messages} from '../settings.js';
 class API {
 
   getProductsData() {
-    const url = settings.db.url + '/' + settings.db.products;
+    const url = `${settings.db.url}/${settings.db.products}`;
     fetch(url) 
     .then(function(rawResponse) {
       return rawResponse.json();
@@ -17,8 +17,8 @@ class API {
   }
 
   getBookingsAndEventsData(minDate, maxDate) {
-    const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(minDate);
-    const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(maxDate);
+    const startDateParam = `${settings.db.dateStartParamKey}=${utils.dateToStr(minDate)}`;
+    const endDateParam = `${settings.db.dateEndParamKey}=${utils.dateToStr(maxDate)}`;
 
     const params = {
       booking: [
@@ -37,9 +37,9 @@ class API {
     };
 
     const urls = {
-      booking: settings.db.url + '/' + settings.db.bookings + '?' + params.booking.join('&'),
-      eventCurrent: settings.db.url + '/' + settings.db.events + '?' + params.eventCurrent.join('&'),
-      eventRepeat: settings.db.url + '/' + settings.db.events + '?' + params.eventRepeat.join('&'),
+      booking: `${settings.db.url}/${settings.db.bookings}?${params.booking.join('&')}`,
+      eventCurrent: `${settings.db.url}/${settings.db.events}?${params.eventCurrent.join('&')}`,
+      eventRepeat: `${settings.db.url}/${settings.db.events}?${params.eventRepeat.join('&')}`,
     };
 
     Promise.all([
@@ -83,7 +83,7 @@ class API {
   }
 
   sentOrder() {
-    const url = settings.db.url + '/' + settings.db.orders;
+    const url = `${settings.db.url}/${settings.db.orders}`;
 
     this.payload = {
       address: app.cart.dom.address.value,
@@ -152,7 +152,7 @@ class API {
   }
 
   sentBooking() {
-    const url = settings.db.url + '/' + settings.db.bookings;
+    const url = `${settings.db.url}/${settings.db.bookings}`;
 
     this.payload = {
       date: app.booking.datePicker.value,
@@ -213,8 +213,8 @@ class API {
   handleBookingSent() {
     app.booking.resetTables();
     app.cart.clearMessages(select.cart.message);
-    messages.booking.confirmation.push('Table ' + this.payload.table + ' for ' + this.payload.ppl + ' persons');
-    messages.booking.confirmation.push('At ' + this.payload.date + ' ' + this.payload.hour);
+    messages.booking.confirmation.push(`Table ${this.payload.table} for ${this.payload.ppl} persons`);
+    messages.booking.confirmation.push(`At ${this.payload.date} ${this.payload.hour}`);
     app.cart.printMessage(messages.booking.confirmation, select.cart.message);
     messages.booking.confirmation = messages.booking.confirmation.slice(0, -3);
   }

@@ -36,7 +36,7 @@ export const app = {
     app.activate(id);
     app.cart.clearMessages(select.cart.message); 
     app.cart.closeCart(); 
-    window.location.hash = '#/' + id;
+    window.location.hash = `#/${id}`;
   },
 
   sleep(ms) {
@@ -73,7 +73,7 @@ export const app = {
     for (let link of this.navLinks) {
       link.classList.toggle(
         classNames.nav.active, 
-        link.getAttribute('href') == '#' + pageId
+        link.getAttribute('href') == `#${pageId}`
        );
     }
     app.flashElementUp(linksToReload, classNames.nav.flashWhenUpdated);

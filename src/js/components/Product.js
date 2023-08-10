@@ -83,7 +83,7 @@ class Product {
       
       for(let optionId in param.options) {
         const option = param.options[optionId];
-        const optionImage = this.dom.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+        const optionImage = this.dom.imageWrapper.querySelector(`.${paramId}-${optionId}`);
         const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
 
         if (optionSelected) {
@@ -118,7 +118,7 @@ class Product {
       
       for(let optionId in param.options) {
         const option = param.options[optionId];
-        const optionImage = this.dom.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+        const optionImage = this.dom.imageWrapper.querySelector(`.${paramId}-${optionId}`);
 
         if (option.default) {
           if (optionImage) {

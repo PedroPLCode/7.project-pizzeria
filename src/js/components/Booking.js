@@ -185,7 +185,7 @@ class Booking {
           event.target.classList.add(classNames.booking.tableSelected); 
           this.selectedTable = tableClicked;
           app.cart.clearMessages(select.cart.message);
-          const message = ['Table ' + tableClicked + ' selected.'];
+          const message = [`Table ${tableClicked} selected.`];
           app.cart.printMessage(message, select.cart.message);
         }
       }

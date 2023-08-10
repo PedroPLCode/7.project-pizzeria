@@ -20,23 +20,21 @@ class AmountWidget extends BaseWidget {
   }
 
   initActions() {
-    const thisWidget = this;
-
-    this.dom.input.addEventListener('change', function(){
+    this.dom.input.addEventListener('change', () => {
       app.cart.clearMessages(select.cart.message);
-      thisWidget.value = thisWidget.dom.input.value;
+      this.value = this.dom.input.value;
     });
 
-    this.dom.linkDecrease.addEventListener('click', function(value) {
+    this.dom.linkDecrease.addEventListener('click', value => {
       value.preventDefault();
       app.cart.clearMessages(select.cart.message);
-      thisWidget.setValue(thisWidget.value - 1);
+      this.setValue(this.value - 1);
     });
 
-    this.dom.linkIncrease.addEventListener('click', function(value) {
+    this.dom.linkIncrease.addEventListener('click', value => {
       value.preventDefault();
       app.cart.clearMessages(select.cart.message);
-      thisWidget.setValue(thisWidget.value + 1);
+      this.setValue(this.value + 1);
     });
   }
 

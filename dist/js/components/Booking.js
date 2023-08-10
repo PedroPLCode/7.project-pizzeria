@@ -42,15 +42,15 @@ class Booking {
     this.datePicker = new  DatePicker (this.dom.datePicker);
     this.hourPicker = new HourPicker (this.dom.hourPicker);
     
-    this.dom.peopleAmount.addEventListener('click', function(event){
+    this.dom.peopleAmount.addEventListener('click', event => {
       event.preventDefault();
     });
 
-    this.dom.hoursAmount.addEventListener('click', function(event){
+    this.dom.hoursAmount.addEventListener('click', event => {
       event.preventDefault();
     });
 
-    this.dom.wrapper.addEventListener('updated', function(event) {
+    this.dom.wrapper.addEventListener('updated', event => {
       app.booking.updateDOM();
       if (app.booking.selectedTable) {
         if (event.target == app.booking.dom.hourPicker) {
@@ -65,16 +65,16 @@ class Booking {
       }
     })
 
-    this.dom.floorPlan.addEventListener('click', function(event) {
+    this.dom.floorPlan.addEventListener('click', event => {
       app.booking.initTables(event);
     })
 
-    this.dom.bookingButton.addEventListener('click', function(event) {
+    this.dom.bookingButton.addEventListener('click', event => {
       event.preventDefault();
       app.api.sentBooking();
     })
 
-    this.dom.email.addEventListener('change', function() {
+    this.dom.email.addEventListener('change', () => {
       app.api.validate(app.booking.dom.email.value.includes('@') && 
                       app.booking.dom.email.value.includes('.'), 
                        messages.error.email, 
@@ -83,7 +83,7 @@ class Booking {
                        classNames.cart.wrapperError);
     })
 
-    this.dom.phone.addEventListener('change', function() {
+    this.dom.phone.addEventListener('change', () => {
       app.api.validate(app.booking.dom.phone.value.length == 9, 
                        messages.error.phone, 
                        select.cart.message, 

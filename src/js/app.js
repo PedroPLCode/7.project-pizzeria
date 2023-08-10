@@ -23,7 +23,7 @@ export const app = {
     app.activate(pageMathingHash);
 
     for (let link of this.navLinks) {
-      link.addEventListener('click', function(event) {
+      link.addEventListener('click', event => {
         const clickedElement = this;
         event.preventDefault();
         const id = clickedElement.getAttribute('href').replace('#', '');
@@ -102,7 +102,7 @@ export const app = {
     this.cart = new Cart(cartElem);
 
     this.productList = document.querySelector(select.containerOf.menu);
-    this.productList.addEventListener('add-to-cart', function(event) {
+    this.productList.addEventListener('add-to-cart', event => {
       app.cart.add(event.detail.product);
     });
   },

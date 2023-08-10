@@ -28,7 +28,7 @@ class HomePage {
   }
 
   initActions() {
-    this.dom.buttonsWrapper.addEventListener('click', function(event) {
+    this.dom.buttonsWrapper.addEventListener('click', event => {
       let id = false;
       if (event.target == app.homePage.dom.buttonOrder ||
           event.target == app.homePage.dom.buttonBooking) {

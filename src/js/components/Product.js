@@ -35,48 +35,42 @@ class Product {
   }
 
   initAccordion() {
-    const thisProduct = this;
-
-    this.dom.accordionTrigger.addEventListener('click', function (event) {
+    this.dom.accordionTrigger.addEventListener('click', event => {
       event.preventDefault();
       const activeProduct = document.querySelector(select.all.menuProductsActive);
-      if (activeProduct && activeProduct != thisProduct.element) {
+      if (activeProduct && activeProduct != this.element) {
         activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
       }
-      thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
+      this.element.classList.toggle(classNames.menuProduct.wrapperActive);
       app.cart.clearMessages(select.cart.message);
     });
   }
 
-  initOrderForm() {
-    const thisProduct = this;
-    
-    this.dom.form.addEventListener('submit', function(event){
+  initOrderForm() {    
+    this.dom.form.addEventListener('submit', event => {
       event.preventDefault();
-      thisProduct.processOrder();
+      this.processOrder();
     });
       
     for(let input of this.dom.formInputs){
-      input.addEventListener('change', function(){
-        thisProduct.processOrder();
+      input.addEventListener('change', () => {
+        this.processOrder();
       });
     }
       
-    this.dom.cartButton.addEventListener('click', function(event){
+    this.dom.cartButton.addEventListener('click', event => {
       event.preventDefault();
-      thisProduct.processOrder();
-      thisProduct.addToCart();
-      thisProduct.resetToDefault();
+      this.processOrder();
+      this.addToCart();
+      this.resetToDefault();
     });
   }
 
   initAmountWidget() {
-    const thisProduct = this;
     this.amountWidget = new AmountWidget(this.dom.amountWidgetElem);
-
-    this.dom.amountWidgetElem.addEventListener('updated', function(event){
+    this.dom.amountWidgetElem.addEventListener('updated', event => {
       event.preventDefault();
-      thisProduct.processOrder();
+      this.processOrder();
     });
   }
 

@@ -28,33 +28,30 @@ class CartProduct {
   }
 
   initAmountWidget(amount) {
-    const thisCartProduct = this;
     this.amountWidget = new AmountWidget(this.dom.amountWidget);
     this.amountWidget.setValue(amount);
 
-    this.dom.amountWidget.addEventListener('updated', function(event){
+    this.dom.amountWidget.addEventListener('updated', event => {
       event.preventDefault();
-      const amount = thisCartProduct.amountWidget.value;
-      const price = thisCartProduct.priceSingle;
-      thisCartProduct.amount = amount;
-      thisCartProduct.price = amount * price;
-      thisCartProduct.dom.price.innerHTML = price * amount;
+      const amount = this.amountWidget.value;
+      const price = this.priceSingle;
+      this.amount = amount;
+      this.price = amount * price;
+      this.dom.price.innerHTML = price * amount;
     });
   }
 
   initActions() {
-    const thisCartProduct = this;
-
-    this.dom.edit.addEventListener('click', function(event) {
+    this.dom.edit.addEventListener('click', event => {
       event.preventDefault();
       app.cart.clearMessages(select.cart.message);
       app.cart.printMessage(messages.error.editNotImplemented, select.cart.message);
     });
 
-    this.dom.remove.addEventListener('click', function(event) {
+    this.dom.remove.addEventListener('click', event => {
       event.preventDefault();
       app.cart.clearMessages(select.cart.message);
-      thisCartProduct.remove();
+      this.remove();
     });
   }
 

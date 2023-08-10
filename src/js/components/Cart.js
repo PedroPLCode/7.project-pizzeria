@@ -27,26 +27,26 @@ class Cart {
   }
 
   initActions() {
-    this.dom.toggleTrigger.addEventListener('click', function(event) {
+    this.dom.toggleTrigger.addEventListener('click', event => {
       event.preventDefault();
         
       app.cart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
     });
 
-    this.dom.productList.addEventListener('updated', function() {
+    this.dom.productList.addEventListener('updated', () => {
       app.cart.update();
     });
 
-    this.dom.productList.addEventListener('remove', function(event) {
+    this.dom.productList.addEventListener('remove', event => {
       app.cart.remove(event.detail.cartProduct);
     });
 
-    this.dom.form.addEventListener('submit', function(event) {
+    this.dom.form.addEventListener('submit', event => {
       event.preventDefault();
       app.api.sentOrder();
     });
 
-    this.dom.address.addEventListener('change', function() {
+    this.dom.address.addEventListener('change', () => {
       app.api.validate(app.cart.dom.address.value.length >= 6, 
                        messages.error.address, 
                        select.cart.message, 
@@ -54,7 +54,7 @@ class Cart {
                        classNames.cart.wrapperError);
     });
 
-    this.dom.phone.addEventListener('change', function() {
+    this.dom.phone.addEventListener('change', () => {
       app.api.validate(app.cart.dom.phone.value.length == 9, 
                        messages.error.phone, 
                        select.cart.message, 

@@ -85,8 +85,9 @@ export const app = {
   },
 
   initMenu: function() {
+    this.productsArray = [];
     for (let productData in this.data.products) {
-      new Product(this.data.products[productData].id, this.data.products[productData]);
+      this.productsArray.push(new Product(this.data.products[productData].id, this.data.products[productData]));
     }
   },
 

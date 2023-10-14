@@ -42,6 +42,7 @@ class AmountWidget extends BaseWidget {
         closeHourClear = true;
         otherBookingsClear = true;
       } else {
+        valueToChange = 0.5;
         const maxTimetoClose = settings.hours.close - utils.hourToNumber(app.booking.hourPicker.value);
         if (this.value < maxTimetoClose) {
           closeHourClear = true;
@@ -68,6 +69,10 @@ class AmountWidget extends BaseWidget {
 
   renderValue() {
     this.dom.input.value = this.value;
+  }
+
+  parseValue(value) {
+      return parseFloat(value);
   }
 
   isValid(value) {

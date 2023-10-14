@@ -277,21 +277,21 @@
       ]
     },
     {
-      "date": "2023-10-18",
+      "date": "2023-10-14",
       "hour": "12:00",
       "table": 1,
-      "duration": 7,
+      "duration": 9,
       "ppl": 1,
       "starters": [],
       "phone": "121212121",
-      "email": "12121@asd.pl",
+      "email": "121212121@ewq.pl",
       "id": 100
     },
     {
-      "date": "2023-10-18",
-      "hour": "15:00",
+      "date": "2023-10-14",
+      "hour": "14:00",
       "table": 3,
-      "duration": 7,
+      "duration": 2,
       "ppl": 1,
       "starters": [],
       "phone": "121212121",
@@ -299,37 +299,15 @@
       "id": 101
     },
     {
-      "date": "2023-10-25",
-      "hour": "21:30",
+      "date": "2023-10-14",
+      "hour": "20:30",
       "table": 3,
-      "duration": 3,
-      "ppl": 1,
+      "duration": 3.5,
+      "ppl": 3,
       "starters": [],
-      "phone": "232323232",
+      "phone": "121212121",
       "email": "asdsadsa@sad.pl",
       "id": 102
-    },
-    {
-      "date": "2023-10-20",
-      "hour": "20:00",
-      "table": 2,
-      "duration": 4,
-      "ppl": 1,
-      "starters": [],
-      "phone": "121212121",
-      "email": "121212121@ewq.pl",
-      "id": 103
-    },
-    {
-      "date": "2023-10-19",
-      "hour": "20:00",
-      "table": 3,
-      "duration": 4,
-      "ppl": 1,
-      "starters": [],
-      "phone": "121212121",
-      "email": "121212121@ewq.pl",
-      "id": 104
     }
   ]
 }

@@ -1,5 +1,6 @@
 import {app} from '../app.js';
 import {select, settings} from '../settings.js';
+import {utils} from '../utils.js';
 import BaseWidget from './BaseWidget.js';
 
 class AmountWidget extends BaseWidget {
@@ -20,6 +21,7 @@ class AmountWidget extends BaseWidget {
   }
 
   initActions() {
+    let valueToChange = 1;
     this.dom.input.addEventListener('change', () => {
       app.cart.clearMessages(select.cart.message);
       this.value = this.dom.input.value;
@@ -28,13 +30,39 @@ class AmountWidget extends BaseWidget {
     this.dom.linkDecrease.addEventListener('click', value => {
       value.preventDefault();
       app.cart.clearMessages(select.cart.message);
-      this.setValue(this.value - 1);
+      this.setValue(this.value - valueToChange);
     });
 
     this.dom.linkIncrease.addEventListener('click', value => {
       value.preventDefault();
       app.cart.clearMessages(select.cart.message);
-      this.setValue(this.value + 1);
+      let closeHourClear = false;
+      let otherBookingsClear = false;
+      if (this !== app.booking.hoursAmountWidget) {
+        closeHourClear = true;
+        otherBookingsClear = true;
+      } else {
+        const maxTimetoClose = settings.hours.close - utils.hourToNumber(app.booking.hourPicker.value);
+        if (this.value < maxTimetoClose) {
+          closeHourClear = true;
+        }
+        let maxTimetoNextBooking;
+        for (let timeIndex = utils.hourToNumber(app.booking.hourPicker.value); timeIndex < 24; timeIndex += valueToChange) {
+          if (!app.booking.booked[app.booking.datePicker.value][timeIndex]) {
+            app.booking.booked[app.booking.datePicker.value][timeIndex] = [];
+          }            
+          if ((app.booking.booked[app.booking.datePicker.value][timeIndex]).includes(parseInt(app.booking.selectedTable))) {
+            maxTimetoNextBooking = timeIndex - utils.hourToNumber(app.booking.hourPicker.value);
+            break;
+          }
+        }
+        if ((this.value < maxTimetoNextBooking) || (maxTimetoNextBooking === undefined)){
+          otherBookingsClear = true;
+        }
+      }
+      if (closeHourClear && otherBookingsClear) {
+        this.setValue(this.value + valueToChange);
+      }
     });
   }
 

@@ -1,5 +1,5 @@
 import {app} from '../app.js';
-import {select, settings} from '../settings.js';
+import {select, settings, messages} from '../settings.js';
 import {utils} from '../utils.js';
 import BaseWidget from './BaseWidget.js';
 
@@ -57,12 +57,15 @@ class AmountWidget extends BaseWidget {
             break;
           }
         }
-        if ((this.value < maxTimetoNextBooking) || (maxTimetoNextBooking === undefined)){
+        if ((this.value < maxTimetoNextBooking) || (maxTimetoNextBooking === undefined)) {
           otherBookingsClear = true;
         }
       }
       if (closeHourClear && otherBookingsClear) {
         this.setValue(this.value + valueToChange);
+      } else {
+        app.cart.clearMessages(select.cart.message);
+        app.cart.printMessage(messages.booking.bookingTooLong, select.cart.message);
       }
     });
   }

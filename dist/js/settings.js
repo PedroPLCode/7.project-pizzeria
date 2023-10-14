@@ -128,6 +128,7 @@ export const messages = {
     tableAlreadyBooked: ['Sorry', 'This table is already booked.'],
     dateChanged: ['Date changed.', 'Table selection reset.'],
     timeChanged: ['Time changed.', 'Table selection reset.'],
+    bookingTooLong: ['Booking time in conflict', 'with other booking', 'or with closing time.'],
     confirmation: ['Booking confirmation', 'CONFIRMED.'],
   },
   error: {

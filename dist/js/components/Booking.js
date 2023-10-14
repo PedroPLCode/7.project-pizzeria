@@ -150,6 +150,7 @@ class Booking {
         table.classList.remove(classNames.booking.tableBooked);
       }
     }
+    this.updateHourPickerColors();
   }
 
   resetTables() {
@@ -190,6 +191,43 @@ class Booking {
         }
       }
     } 
+  }
+
+  determineSingleColor(howBusy) {
+    if (howBusy >= 3) {
+      return 'red';
+    } else if (howBusy == 2) {
+      return 'orange';
+    } else {
+      return 'green';
+    }
+  }
+
+  determineRangeSliderFill() {
+    const timeJump = 0.5;
+    let linearGradientString = 'linear-gradient(to right';
+    let ratingPart = 0;
+    for (let timePeriod = settings.hours.open; timePeriod <= settings.hours.close; timePeriod += timeJump) {
+      const nextRatingPart = ratingPart + (100 / ((settings.hours.close - settings.hours.open) / timeJump));
+      const stringToAdd = ` ,${this.determineSingleColor(this.howBusy[timePeriod])} ${ratingPart}% ${nextRatingPart}%`;
+      ratingPart = nextRatingPart;
+      linearGradientString += stringToAdd;
+    }
+    return `${linearGradientString})`;
+  }
+  
+  updateHourPickerColors() {
+    this.howBusy = {};
+    for (let singleDayBooking in app.booking.booked) {
+      if (singleDayBooking === app.booking.datePicker.value) {
+        for (let singleHourBooking in app.booking.booked[singleDayBooking]) {
+          this.howBusy[singleHourBooking] = app.booking.booked[singleDayBooking][singleHourBooking].length;
+        }
+      }
+    }
+    this.dom.rangeSlider = document.querySelector(select.widgets.hourPicker.rangeSlider);
+    const rangeSliderFill = this.determineRangeSliderFill();
+    this.dom.rangeSlider.style.background = rangeSliderFill;
   }
 }
 

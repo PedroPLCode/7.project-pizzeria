@@ -70,9 +70,10 @@
   
   .rangeSlider {
     top: $base-size;
-    background: lighten($color-dark, 60%);
+    background: none;
     box-shadow: none;
     height: $base-size;
+    cursor: pointer;
   
     &__handle {
       box-shadow: none;
@@ -94,7 +95,7 @@
     }
   
     &__fill {
-      background: $color-success;
+      background: none;
       transition: width 100ms;
       transition-timing-function: cubic-bezier(0, 1, 0, 1);
       box-shadow: none;

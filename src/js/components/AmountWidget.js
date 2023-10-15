@@ -52,9 +52,14 @@ class AmountWidget extends BaseWidget {
           if (!app.booking.booked[app.booking.datePicker.value][timeIndex]) {
             app.booking.booked[app.booking.datePicker.value][timeIndex] = [];
           }            
-          if ((app.booking.booked[app.booking.datePicker.value][timeIndex]).includes(parseInt(app.booking.selectedTable))) {
-            maxTimetoNextBooking = timeIndex - utils.hourToNumber(app.booking.hourPicker.value);
-            break;
+          let timeToNextBooking;
+          for (let singleSelectedTable of app.booking.selectedTables) {
+            if ((app.booking.booked[app.booking.datePicker.value][timeIndex]).includes(parseInt(singleSelectedTable))) {
+              timeToNextBooking = timeIndex - utils.hourToNumber(app.booking.hourPicker.value);
+            }
+            if ((timeToNextBooking < maxTimetoNextBooking) || !maxTimetoNextBooking) {
+              maxTimetoNextBooking = timeToNextBooking;
+            }
           }
         }
         if ((this.value < maxTimetoNextBooking) || (maxTimetoNextBooking === undefined)) {

@@ -52,7 +52,7 @@ class Booking {
 
     this.dom.wrapper.addEventListener('updated', event => {
       app.booking.updateDOM();
-      if (app.booking.selectedTable) {
+      if (app.booking.selectedTables) {
         if (event.target == app.booking.dom.hourPicker) {
           app.booking.resetTables();
           app.cart.clearMessages(select.cart.message);
@@ -67,6 +67,7 @@ class Booking {
 
     this.dom.floorPlan.addEventListener('click', event => {
       app.booking.initTables(event);
+      this.hoursAmountWidget.value = 1;
     })
 
     this.dom.bookingButton.addEventListener('click', event => {
@@ -96,11 +97,11 @@ class Booking {
     this.booked = {};
 
     for (let item of bookings) {
-      this.makeBooked(item.date, item.hour, item.duration, item.table);
+      this.makeBooked(item.date, item.hour, item.duration, item.tables);
     }
 
     for (let item of eventCurrent) {
-      this.makeBooked(item.date, item.hour, item.duration, item.table);
+      this.makeBooked(item.date, item.hour, item.duration, item.tables);
     }
     const minDate = this.datePicker.minDate;
     const maxDate = this.datePicker.maxDate;
@@ -108,24 +109,25 @@ class Booking {
     for (let item of eventRepeat) {
       if (item.repeat == "daily") {
         for (let indexDate = minDate; indexDate <= maxDate; indexDate = utils.addDays(indexDate, 1)) {
-          this.makeBooked(utils.dateToStr(indexDate), item.hour, item.duration, item.table);
+          this.makeBooked(utils.dateToStr(indexDate), item.hour, item.duration, item.tables);
         }
       }
     }
     this.updateDOM();
   }
 
-  makeBooked(date, hour, duration, table) {
-    if (typeof this.booked[date] == 'undefined') {
-      this.booked[date] = {};
-    }
-    const startHour = utils.hourToNumber(hour);
-
-    for (let indexHour = startHour; indexHour < startHour + duration; indexHour += 0.5) {
-      if (typeof this.booked[date][indexHour] == 'undefined') {
-        this.booked[date][indexHour] = [];
+  makeBooked(date, hour, duration, tables) {
+    for (let table of tables) {
+      if (typeof this.booked[date] == 'undefined') {
+        this.booked[date] = {};
       }
-      this.booked[date][indexHour].push(table);
+      const startHour = utils.hourToNumber(hour);
+      for (let indexHour = startHour; indexHour < startHour + duration; indexHour += 0.5) {
+        if (typeof this.booked[date][indexHour] == 'undefined') {
+          this.booked[date][indexHour] = [];
+        }
+        this.booked[date][indexHour].push(parseInt(table));
+      }
     }
   }
 
@@ -154,7 +156,7 @@ class Booking {
   }
 
   resetTables() {
-    this.selectedTable = false;
+    app.booking.selectedTables = [];
     for (let table of this.dom.tables) {
       table.classList.remove(classNames.booking.tableSelected); 
     }
@@ -162,15 +164,10 @@ class Booking {
 
   initTables(event) {
     const tableClicked = event.target.getAttribute(select.booking.dataTable);
-    this.selectedTable = false;
-
-    app.cart.clearMessages(select.cart.message);
-    
-    for (let table of this.dom.tables) {
-      if (table != event.target) {
-        table.classList.remove(classNames.booking.tableSelected); 
-      }
+    if (!this.selectedTables) {
+      this.selectedTables = [];
     }
+    app.cart.clearMessages(select.cart.message);
 
     if (event.target.classList.contains(classNames.booking.singleTable)) {
       if (event.target.classList.contains(classNames.booking.tableBooked)) {
@@ -179,14 +176,20 @@ class Booking {
       } else {
         if (event.target.classList.contains(classNames.booking.tableSelected)) {
           event.target.classList.remove(classNames.booking.tableSelected); 
-          this.selectedTable = false;
+          const indexToRemove = this.selectedTables.indexOf(parseInt(tableClicked));
+          this.selectedTables.splice(indexToRemove, 1);
           app.cart.clearMessages(select.cart.message);
-          app.cart.printMessage(messages.booking.tableNotSelected, select.cart.message);
+          const message = [`Table(s) ${this.selectedTables} selected.`];
+          app.cart.printMessage(message, select.cart.message);
+          if (this.selectedTables.length === 0) {
+            app.cart.clearMessages(select.cart.message);
+            app.cart.printMessage(messages.booking.tableNotSelected, select.cart.message);
+          }
         } else {
           event.target.classList.add(classNames.booking.tableSelected); 
-          this.selectedTable = tableClicked;
+          this.selectedTables.push(parseInt(tableClicked));
           app.cart.clearMessages(select.cart.message);
-          const message = [`Table ${tableClicked} selected.`];
+          const message = [`Table(s) ${this.selectedTables} selected.`];
           app.cart.printMessage(message, select.cart.message);
         }
       }

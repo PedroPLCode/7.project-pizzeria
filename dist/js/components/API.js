@@ -157,7 +157,7 @@ class API {
     this.payload = {
       date: app.booking.datePicker.value,
       hour: app.booking.hourPicker.value,
-      table: parseInt(app.booking.selectedTable),
+      tables: app.booking.selectedTables,
       duration: app.booking.hoursAmountWidget.correctValue,
       ppl: app.booking.peopleAmountWidget.correctValue,
       starters: [],
@@ -179,7 +179,7 @@ class API {
       body: JSON.stringify(this.payload),
     };
 
-    const validationSuccesfull = this.validate(this.payload.table, 
+    const validationSuccesfull = this.validate(this.payload.tables, 
                                                   messages.error.table, 
                                                   select.cart.message) &&
                                  this.validate(this.payload.phone.length == 9, 
@@ -201,8 +201,9 @@ class API {
       })
       .then(function(parsedResponse) {
         console.log('parsed response - sentBooking', parsedResponse);
-        app.booking.makeBooked(app.api.payload.date, app.api.payload.hour, app.api.payload.duration, app.api.payload.table);
+        app.booking.makeBooked(app.api.payload.date, app.api.payload.hour, app.api.payload.duration, app.api.payload.tables);
         app.api.handleBookingSent();
+        app.booking.updateDOM();
       })
       .catch((error) => {
         app.api.handleError(error, messages.error.bookingNotSent);
@@ -213,7 +214,7 @@ class API {
   handleBookingSent() {
     app.booking.resetTables();
     app.cart.clearMessages(select.cart.message);
-    messages.booking.confirmation.push(`Table ${this.payload.table} for ${this.payload.ppl} persons`);
+    messages.booking.confirmation.push(`Table(s) ${this.payload.tables} for ${this.payload.ppl} persons`);
     messages.booking.confirmation.push(`At ${this.payload.date} ${this.payload.hour}`);
     app.cart.printMessage(messages.booking.confirmation, select.cart.message);
     messages.booking.confirmation = messages.booking.confirmation.slice(0, -3);

@@ -44,11 +44,55 @@ class Booking {
     
     this.dom.peopleAmount.addEventListener('click', event => {
       event.preventDefault();
+      app.cart.clearMessages(select.cart.message);
+      app.cart.printMessage([`Peoples amount: ${app.booking.peopleAmountWidget.value}`], select.cart.message);
+      if (!app.booking.selectedTables || app.booking.selectedTables.length == 0) {
+        app.cart.printMessage([`No tables selected.`], select.cart.message);
+      } else {
+        app.cart.printMessage([`Table(s): ${app.booking.selectedTables}`], select.cart.message);
+      }
     });
 
     this.dom.hoursAmount.addEventListener('click', event => {
       event.preventDefault();
+      app.cart.clearMessages(select.cart.message);
+      app.cart.printMessage([`Hours amount: ${app.booking.hoursAmountWidget.value}`], select.cart.message);
+      if (!app.booking.selectedTables || app.booking.selectedTables.length == 0) {
+        app.cart.printMessage([`No tables selected.`], select.cart.message);
+      } else {
+        app.cart.printMessage([`Table(s): ${app.booking.selectedTables}`], select.cart.message);
+      }
     });
+
+    this.dom.datePicker.addEventListener('updated', event => {
+      event.preventDefault();
+      app.cart.clearMessages(select.cart.message);
+      app.cart.printMessage(messages.booking.date, select.cart.message);
+    });
+
+    this.dom.hourPicker.addEventListener('updated', event => {
+      event.preventDefault();
+      app.cart.clearMessages(select.cart.message);
+      app.cart.printMessage(messages.booking.time, select.cart.message);
+    });
+
+    for (let checkbox of this.dom.checkboxes) {
+      checkbox.addEventListener('change', event => {
+        event.preventDefault();
+        const selectedStarters = [];
+        for (let singleCheckbox of app.booking.dom.checkboxes) {
+          if (singleCheckbox.checked) {
+            selectedStarters.push(singleCheckbox.value);
+          }
+        }
+        app.cart.clearMessages(select.cart.message);
+        if (selectedStarters.length != 0) {
+          app.cart.printMessage(['Starters:', `${selectedStarters}`], select.cart.message);
+        } else {
+          app.cart.printMessage(['No starters selected.'], select.cart.message);
+        }
+      });
+    }
 
     this.dom.wrapper.addEventListener('updated', event => {
       app.booking.updateDOM();
@@ -179,7 +223,7 @@ class Booking {
           const indexToRemove = this.selectedTables.indexOf(parseInt(tableClicked));
           this.selectedTables.splice(indexToRemove, 1);
           app.cart.clearMessages(select.cart.message);
-          const message = [`Table(s) ${this.selectedTables} selected.`];
+          const message = [`Table(s) ${this.selectedTables} selected.`, 'Check hours amount.'];
           app.cart.printMessage(message, select.cart.message);
           if (this.selectedTables.length === 0) {
             app.cart.clearMessages(select.cart.message);

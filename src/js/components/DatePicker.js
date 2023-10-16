@@ -26,11 +26,18 @@ class DatePicker extends BaseWidget{
       locale: {
         firstDayOfWeek: 1
       },
-      disable: [
-        function(date) {
-          return (date.getDay() === 1);
+      responsive: {
+        small: {
+          display: 'bottom',
+        },
+        medium: {
+          display: 'center',
+        },
+        large: {
+          display: 'anchored,'
         }
-      ],
+      },
+      showWeekNumbers: true,
       onChange: function(selectedDates, dateStr) {
         app.booking.datePicker.value = dateStr;
       },

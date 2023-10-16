@@ -204,69 +204,33 @@
   ],
   "orders": [
     {
-      "address": "dsfdsfsdf",
+      "address": "12121212",
       "phone": "121212121",
-      "totalPrice": 104,
-      "subtotalPrice": 84,
-      "totalNumber": 3,
+      "totalPrice": 34,
+      "subtotalPrice": 14,
+      "totalNumber": 1,
       "deliveryFee": 20,
       "products": [
         {
           "name": "pizza",
-          "amount": 3,
-          "price": 84,
-          "priceSingle": 28,
+          "amount": 1,
+          "price": 14,
+          "priceSingle": 14,
           "params": {
             "sauce": [
               "tomato"
             ],
             "toppings": [
               "olives",
-              "redPeppers",
-              "greenPeppers",
-              "mushrooms",
-              "basil",
-              "salami"
+              "basil"
             ],
             "crust": [
-              "cheese"
+              "standard"
             ]
           }
         }
       ],
       "id": 1
-    },
-    {
-      "address": "qwertyu",
-      "phone": "121212121",
-      "totalPrice": 89,
-      "subtotalPrice": 69,
-      "totalNumber": 3,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "name": "pizza",
-          "amount": 3,
-          "price": 69,
-          "priceSingle": 23,
-          "params": {
-            "sauce": [
-              "tomato"
-            ],
-            "toppings": [
-              "olives",
-              "redPeppers",
-              "greenPeppers",
-              "mushrooms",
-              "basil"
-            ],
-            "crust": [
-              "wholewheat"
-            ]
-          }
-        }
-      ],
-      "id": 2
     }
   ],
   "events": [
@@ -355,19 +319,19 @@
       ]
     },
     {
-      "date": "2023-10-15",
-      "hour": "21:00",
+      "date": "2023-10-16",
+      "hour": "12:00",
       "tables": [
-        1,
-        3
+        1
       ],
-      "duration": 3,
-      "ppl": 3,
+      "duration": 3.5,
+      "ppl": 4,
       "starters": [
-        "water"
+        "water",
+        "bread"
       ],
       "phone": "121212121",
-      "email": "asdsadsa@sad.pl",
+      "email": "12121@asd.pl",
       "id": 100
     }
   ]

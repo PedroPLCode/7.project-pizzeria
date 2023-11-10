@@ -204,25 +204,29 @@
   ],
   "orders": [
     {
-      "address": "12121212",
+      "address": "1212131 13",
       "phone": "121212121",
-      "totalPrice": 34,
-      "subtotalPrice": 14,
-      "totalNumber": 1,
+      "totalPrice": 66,
+      "subtotalPrice": 46,
+      "totalNumber": 2,
       "deliveryFee": 20,
       "products": [
         {
           "name": "pizza",
-          "amount": 1,
-          "price": 14,
-          "priceSingle": 14,
+          "amount": 2,
+          "price": 46,
+          "priceSingle": 23,
           "params": {
             "sauce": [
               "tomato"
             ],
             "toppings": [
               "olives",
-              "basil"
+              "redPeppers",
+              "greenPeppers",
+              "mushrooms",
+              "basil",
+              "salami"
             ],
             "crust": [
               "standard"
@@ -319,20 +323,45 @@
       ]
     },
     {
-      "date": "2023-10-16",
-      "hour": "12:00",
+      "date": "2023-11-06",
+      "hour": "14:00",
       "tables": [
-        1
+        1,
+        3
       ],
-      "duration": 3.5,
-      "ppl": 4,
-      "starters": [
-        "water",
-        "bread"
-      ],
+      "duration": 2,
+      "ppl": 1,
+      "starters": [],
       "phone": "121212121",
-      "email": "12121@asd.pl",
+      "email": "122@23.PL",
       "id": 100
+    },
+    {
+      "date": "2023-11-06",
+      "hour": "17:00",
+      "tables": [
+        1,
+        2
+      ],
+      "duration": 1,
+      "ppl": 1,
+      "starters": [],
+      "phone": "121212121",
+      "email": "122@23.PL",
+      "id": 101
+    },
+    {
+      "date": "2023-11-06",
+      "hour": "18:00",
+      "tables": [
+        3
+      ],
+      "duration": 5.5,
+      "ppl": 1,
+      "starters": [],
+      "phone": "121212121",
+      "email": "122@23.PL",
+      "id": 102
     }
   ]
 }
